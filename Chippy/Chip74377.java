@@ -6,13 +6,13 @@ package Chippy;
 
 import java.io.*;
 
-public class ChipFlop extends Chip implements Serializable
+public class Chip74377 extends Chip implements Serializable
 {
    boolean clock; // true if the clock was up on last charge
    FF[] theFFs;
    int clockpin = 11;
     
-   public ChipFlop()
+   public Chip74377()
    {
       super(20); // 74377s have 20 pins.
       height = 95;

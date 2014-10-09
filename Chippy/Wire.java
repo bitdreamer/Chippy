@@ -12,6 +12,8 @@ import java.io.*;
 
 public class Wire extends Piece implements Serializable
 {
+   static boolean bug = true;
+
 	private String color; // this wire is this color
 	private Pin endpoint1, endpoint2; 
 	//private int wireLength = 40;
@@ -19,11 +21,11 @@ public class Wire extends Piece implements Serializable
 	int pinSelected = 0;
 
   	protected static Chippy theChippy;
-  	
+  	/*
   	public Wire( int x, int y, Color c1 )
   	{
   	}
-
+*/
 	// constructor
 	public Wire(int x , int y, int color)
 	{
@@ -43,6 +45,29 @@ public class Wire extends Piece implements Serializable
       else if ( color==5 ) { c = Color.blue; }
 	}
 	
+	public Wire( int x1, int y1, int x2, int y2, Color c1 )
+	{
+      xanchor = x1; yanchor = y1; name = "wire";
+      //super( x, y );
+      endpoint1 = new Pin(this,0,0); // Pin(x, y, "endpoint1", this);
+      //pins.add(endpoint1);
+      connectix.add(endpoint1);
+      endpoint2 = new Pin(this,x2-x1,y2-y1); // Pin(x, y+50, "endpoint2", this);
+      //pins.add(endpoint2);
+      connectix.add(endpoint2);
+      
+      c = c1;
+
+	}
+	
+	public String saveMe()
+	{
+      return "wire "+c.getRed()+" "+c.getGreen()+" "+c.getBlue()+" "
+            +endpoint1.xab+" "+endpoint1.yab + " "
+            +endpoint2.xab+" "+endpoint2.yab+"\n";
+    
+	}
+	
 	
 	//--------------------------------------------------------------------------
 	// sets and gets
@@ -60,6 +85,8 @@ public class Wire extends Piece implements Serializable
    // If no drivers, float.
 	public boolean charge()
 	{
+      //if (bug) { System.out.println("Wire.charge: entering ..."); }
+      
       return likeWire( endpoint1, endpoint2 );
    }
 
@@ -67,7 +94,8 @@ public class Wire extends Piece implements Serializable
    // use it to make a button look like a wire when it is pressed.
    public static boolean likeWire( Pin endpoint1, Pin endpoint2 )
    {
-   
+      if (bug) { System.out.println("Wire.likeWire: entering ..."); }
+      
       boolean changed = false; // start with no change 
       
       boolean e1d = endpoint1.isDriven();
@@ -76,24 +104,28 @@ public class Wire extends Piece implements Serializable
       {
          changed |= endpoint1.setVoltage(2); endpoint1.setIdrive(false);
          changed |= endpoint2.setVoltage(2); endpoint2.setIdrive(false);
+         if (bug) { System.out.println("    fire");}
       }
       else if ( e1d )
       {
          int v = endpoint1.getBuddy().getVoltage();
          changed |= endpoint1.setVoltage(v); endpoint1.setIdrive(false);
          changed |= endpoint2.setVoltage(v); endpoint2.setIdrive(true);
+         if (bug) { System.out.println("    endpoint1 being driven");}
       }
       else if ( e2d )
       {
          int v = endpoint2.getBuddy().getVoltage();
          changed |= endpoint1.setVoltage(v); endpoint1.setIdrive(true);
          changed |= endpoint2.setVoltage(v); endpoint2.setIdrive(false);
+         if (bug) { System.out.println("    endpoint2 being driven");}
       }
       else // wires don't float, but we don't want to mistake it for battery 0
            // either, so let's just say it floats
       {
          changed |= endpoint1.setVoltage(3); endpoint1.setIdrive(false);
          changed |= endpoint2.setVoltage(3); endpoint2.setIdrive(false);
+         if (bug) { System.out.println("    nada, everybody floating   ");}
       }
 		
       //		System.out.println("wire - " + voltage);

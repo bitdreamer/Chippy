@@ -1,13 +1,14 @@
-// AndChip.java
+// Chip7408.java
 // Edited by Samah and Emily and Susan
 // ... and Barry
+// this is an AND chip
 
 package Chippy;
 import java.io.*;
 
-public class ChipAnd extends Chip implements Serializable
+public class Chip7408 extends Chip implements Serializable
 {
-    public ChipAnd()
+    public Chip7408()
     {
        super(14); // 7408s have 14 pins.
        chip74 = "7408";
@@ -17,7 +18,12 @@ public class ChipAnd extends Chip implements Serializable
        pinArray[11].setIdrive(true);
        pinArray[8].setIdrive(true);
     }
-
+    /*
+    public String saveMe()
+    {
+       return "TTL "+ chip74 +xanchor+" "+yanchor+"\n";
+    }
+   */
    @Override
    // charge.  do the thing with the gates
    // This is for use with 1-14 pin numbering

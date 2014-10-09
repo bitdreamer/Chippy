@@ -1,11 +1,13 @@
 package Chippy;
-// ChipOr.java
+// Chip32.java
 // Edited by Samah and Emily and Susan
+// this is a quad OR chip
+
 import java.io.*;
 
-public class ChipOr extends Chip implements Serializable
+public class Chip7432 extends Chip implements Serializable
 {
-   public ChipOr()
+   public Chip7432()
    {
       super(14); // 7432s have 14 pins.
       chip74 = "7432";

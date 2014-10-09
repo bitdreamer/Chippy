@@ -8,13 +8,18 @@
  * This program needs to be tested.  It also needs a more chips.
  * In particular we need a chip that is an oscillator, generates
  * pulses.  I hope there is such a chip.
+ * 
+ * 2014 Chippy being revised (Barrett Koster) to have charging work
+ * and lots of other things.
  *
 */
 
 package Chippy;
 
 import java.awt.*;
+
 import javax.swing.*;
+
 import java.awt.event.*;
 import java.awt.Graphics;
 import java.util.*;
@@ -262,8 +267,8 @@ public class Chippy extends JFrame implements ActionListener
                {makeLight(lights.getSelectedIndex());}
 			else if (e.getSource() == switches) { makeSwitch(); }
 			else if (e.getSource() == removeButton) {removeAllParts();}
-			else if (e.getSource() == saveButton) {saveObjects();}
-			else if (e.getSource() == loadButton) {loadObjects();}
+			else if (e.getSource() == saveButton) {save();}
+			else if (e.getSource() == loadButton) {load();}
 			else if (e.getSource() == aboutButton) { aboutBox();}
          else if (e.getSource() == chargeOne) { charge(); /*repo();*/ }
 		  	repaint();
@@ -279,74 +284,91 @@ public class Chippy extends JFrame implements ActionListener
    public void repo()
    {
        // set variable c to be the ChipFlop
-       ChipFlop c=null;
+       Chip74377 c=null;
        Iterator i = cktList.iterator();
        while ( i.hasNext() )
        {
            Object o1 = i.next();
-           if ( o1 instanceof ChipFlop ) { c = (ChipFlop) o1; }
+           if ( o1 instanceof Chip74377 ) { c = (Chip74377) o1; }
        }
        
        // 
        c.report();
    }
 
-	// saves the circuit to the Chippy.dat file
-	public void saveObjects()
-	{
-	  	int result = fc.showSaveDialog(this);
-		
-		if (result == JFileChooser.APPROVE_OPTION)
-		{
-		  File file = fc.getSelectedFile();
-		  try
-		  {
-			  FileOutputStream fos = new FileOutputStream ( file );
-			  ObjectOutputStream oos = new ObjectOutputStream ( fos );
-			  
-			  Iterator i = cktList.iterator();
-			  while ( i.hasNext() )
-			  {
-				  Piece p = ( Piece ) i.next();
-  				  oos.writeObject ( p );
-				  oos.flush();
-			  }
-			  oos.close();
-		  }
-		  catch ( Exception e )
-		  {
-			  System.out.println( e.toString() );
-		  }
-		}
-	}
 
-   // loads objects from the Chippy.dat file and then adds them again
-	// to cktList
-	public void loadObjects()
-	{
-	  	int result = fc.showOpenDialog(this);
-					
-		if (result == JFileChooser.APPROVE_OPTION)
+   // saves the circuit to a .chpy file (text)
+   public void save()
+   {
+      int result = fc.showSaveDialog(this);
+      
+      if (result == JFileChooser.APPROVE_OPTION)
       {
-		  File file = fc.getSelectedFile();
-		  try
-		  {
-			 FileInputStream fis = new FileInputStream( file );
-			 ObjectInputStream ois = new ObjectInputStream( fis );
-			   		
-			  while ( true )
-			  {
-			     Piece p = (Piece) ois.readObject();
-				  cktList.add(p);  	
-			  }  
-		   }
-		   catch ( Exception e )
-		   {
-			  System.out.println( e.toString() );
-		   }	
-			countBoards();  //reset the count to match this circuit
+        File file = fc.getSelectedFile();
+        try
+        {
+           FileWriter fw = new FileWriter ( file );
+          // ObjectOutputStream oos = new ObjectOutputStream ( fos );
+           
+           Iterator i = cktList.iterator();
+           while ( i.hasNext() )
+           {
+              Piece p = ( Piece ) i.next();
+              fw.write ( p.saveMe() );
+           }
+           fw.flush();
+           fw.close();
+        }
+        catch ( Exception e )
+        {
+           System.out.println( e.toString() );
+        }
       }
+   }
+   
+	// this is for loading from a text file.
+	// It asks the user to pick a file, then loads it with 
+	// commands to record all of the Pieces.
+	public void load()
+	{
+	   try
+	   {
+         int result = fc.showOpenDialog(this); // this is where the user picks the file
+      
+         if (result == JFileChooser.APPROVE_OPTION)
+         {
+            File file = fc.getSelectedFile(); // ok, so what was that file?
+            FileReader fr = new FileReader(file);
+            BufferedReader bfr = new BufferedReader( fr );
+            
+            if ( bfr != null )
+            {
+                String line;
+                boolean done=false;
+                while (!done)
+                {
+                    line = null;
+                    try{ line = bfr.readLine(); }
+                    catch (EOFException e) { done = true; } // doesn't work
+                    catch (IOException e) 
+                    { System.out.println("Cmd.cmd: read error="+e); done = true; }
+                    
+                    // detect end of file (this one works)
+                    if ( line ==null ) { done = true; }
+                    
+                    if ( !done )
+                    {
+                        theDoer.doCom( line );
+                    }
+                }
+            }
+
+         }
+	   }
+	   catch (Exception e ) { System.out.println( e.toString() );}
+	   countBoards();
 	}
+	
 
    // findAHole. returns Hole at given xy
    // how: goes through list of components, asks each if it has a hole at xy
@@ -388,15 +410,18 @@ public class Chippy extends JFrame implements ActionListener
    // fix: make this return true only if something changes
    public boolean charge()
 	{
+      //if (bug) { System.out.println("Chippy.charge: entering ...");}
       boolean somethingChanged = false;
 		Iterator <Piece> i = cktList.iterator();
 	   while (i.hasNext())
 		{
 			Piece p = i.next();
-			somethingChanged = somethingChanged || p.charge();
+			//if (bug) { System.out.println("   about to call charge on piece "+p.name ); }
+			boolean ch = p.charge();
+			somethingChanged = somethingChanged || ch;
 		}
 	   
-	   //report();
+	   report();
 	   
 	   return somethingChanged;
 	}

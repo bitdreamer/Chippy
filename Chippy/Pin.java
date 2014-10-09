@@ -116,11 +116,9 @@ public class Pin extends Connectic
 		// debugging 
 		if ( theChippy.bug )
 		{
-   		if ( voltage >= 4 )
-   		{
-   		   g.setColor( Color.red );
-   		   g.drawLine( xab, yab, xab+15, yab-15 );
-   		}
+   		if ( voltage >= 4 ) { g.setColor( Color.red ); }
+   		else                { g.setColor( Color.black ); }
+         g.drawLine( xab, yab, xab+1, yab-2 );
 		}
 	}
 }

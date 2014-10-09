@@ -5,6 +5,7 @@ package Chippy;
 
 import java.awt.*;
 import java.io.*;
+import java.util.*;
 
 public abstract class Chip extends RectangularPiece implements Serializable
 {
@@ -21,10 +22,10 @@ public abstract class Chip extends RectangularPiece implements Serializable
    // names of available chips.  MUST agree with method below.
    public static String[] chipNames =
       {"Choose a Chip", // 0
-       "AND 7408", // 1
-       "NOT 7404", // 2
-       "OR 7432",  // 3
-       "Flip Flop 74377" // 4
+       "7404", // 1
+       "7408", // 2
+       "7432",  // 3
+       "74377" // 4
       };
 
    // return a Chip object of type t1 from list above
@@ -37,13 +38,44 @@ public abstract class Chip extends RectangularPiece implements Serializable
       switch ( t1 )
       {
           case 0: break;
-          case 1: c = new ChipAnd(); break;
-          case 2: c = new ChipNot(); break;
-          case 3: c = new ChipOr(); break;
-          case 4: c = new ChipFlop(); break;
+          case 1: c = new Chip7404(); break;
+          case 2: c = new Chip7408(); break;
+          case 3: c = new Chip7432(); break;
+          case 4: c = new Chip74377(); break;
       }       
       return c;
    }
+   
+   public static Chip makeChip( StringTokenizer st )
+   {
+
+      Chip c = null;
+      
+      try
+      {
+         String key = st.nextToken();
+         if      ( key.equals("7404" ) ) { c = new Chip7404(); }
+         else if ( key.equals("7408" ) ) { c = new Chip7408(); }
+         else if ( key.equals("7432" ) ) { c = new Chip7432(); }
+         else if ( key.equals("74377") ) { c = new Chip74377(); }
+          
+         int x = Integer.parseInt( st.nextToken() );
+         int y = Integer.parseInt( st.nextToken() );
+         
+         c.move(x,y);
+      }
+      catch( Exception e )
+      { System.out.println("read error on TTL ..."+e); }
+      
+      return c;
+   }
+   
+   public String saveMe()
+   {
+      return "TTL "+ chip74 + " " +xanchor+" "+yanchor+"\n";
+   }
+
+   
    // make a generic chip, give it np1 number of legs
    public Chip( int np1 )
    {

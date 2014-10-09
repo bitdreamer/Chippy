@@ -32,6 +32,13 @@ public class ToggleSwitch extends RectangularPiece implements Serializable
       connectix.add(centerPin);
       connectix.add(bottomPin);
    }
+  	
+   public String saveMe()
+   {
+      return "ToggleSwitch " +xanchor+" "+yanchor+"\n";
+   }
+
+
 
    // fix- this code is a mess. Between grab and contain I
    // can't tell which is used for what

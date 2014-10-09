@@ -37,6 +37,12 @@ public class Battery extends RectangularPiece implements Serializable
       connectix.add(posHole);
       name="battery";
 	}
+	
+	//returns 
+	public String saveMe()
+	{
+	   return "battery\n";
+	}
 
    // Return Hole if this piece has one near given xy
    @Override

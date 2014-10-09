@@ -28,7 +28,12 @@ public class PushButtonSwitch extends RectangularPiece implements Serializable
       connectix.add(bottomPin);
 
    }
-	
+  	
+   public String saveMe()
+   {
+      return "PushButtonSwitch " +xanchor+" "+yanchor+"\n";
+   }
+
    // grab.  returns true if this xy is near the grab point
    // also toggles the switch if xy is within bounds
    public boolean grab( int x, int y )

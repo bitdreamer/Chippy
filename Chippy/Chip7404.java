@@ -5,11 +5,11 @@
 package Chippy;
 import java.io.*;
 
-public class ChipNot extends Chip implements Serializable
+public class Chip7404 extends Chip implements Serializable
 {
    static final long serialVersionUID = 0; // makes the compiler happy
    
-   public ChipNot()
+   public Chip7404()
    {
       super(14); // 7404s have 14 pins.
       chip74 = "7404";

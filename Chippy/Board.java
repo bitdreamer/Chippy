@@ -50,7 +50,8 @@ public class Board extends Piece implements Serializable
 
    @Override
    public void report()
-   {/*
+   {
+      /*
       System.out.println("Board:report: ....");
       Iterator <Cluster> i = clusters.iterator();
       while ( i.hasNext() )
@@ -58,7 +59,12 @@ public class Board extends Piece implements Serializable
          Cluster c2 = i.next();
          c2.report( );
       }
-*/
+      */
+   }
+   
+   public String saveMe()
+   {
+      return "board "+ xanchor +" "+yanchor+"\n";
    }
 
    @Override

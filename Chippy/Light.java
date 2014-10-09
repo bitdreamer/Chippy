@@ -47,6 +47,11 @@ public class Light extends Piece implements Serializable
       connectix.add(pin1);
       connectix.add(pin2);
    }
+   
+   public String saveMe()
+   {
+      return "light "+c.getRed()+" "+c.getGreen()+" "+c.getBlue()+" "+xanchor+" "+yanchor+"\n";
+   }
 
    //
    @Override

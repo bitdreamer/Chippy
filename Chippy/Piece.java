@@ -137,7 +137,10 @@ public abstract class Piece implements Serializable
    public boolean press( int x1, int y1 ) { return false; }
    public boolean release( ) { return false; }
 
-
+   public String saveMe()
+   {
+      return "Error: some Piece doesn't have a saveMe() function.";
+   }
 
 	//--------------------------------------------------------------------------
    // gets and sets
