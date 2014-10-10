@@ -421,7 +421,7 @@ public class Chippy extends JFrame implements ActionListener
 			somethingChanged = somethingChanged || ch;
 		}
 	   
-	   report();
+	   // report();
 	   
 	   return somethingChanged;
 	}
@@ -449,7 +449,7 @@ public class Chippy extends JFrame implements ActionListener
             numBoards++;
         }
     }
-
+/*
    // contruct chip of menu type, put in list of circuit components
    public void makeChip()
    {
@@ -458,7 +458,16 @@ public class Chippy extends JFrame implements ActionListener
       cktList.add(c);
       chips.setSelectedIndex(0);
    }
-
+*/
+   public void makeChip()
+   {
+      String chipType = Chip.getChipName(chips.getSelectedIndex());
+      if (bug) { System.out.println("Chippy.makeChip: about to make type "+chipType ); }
+      Chip c = Chip.makeChip( new StringTokenizer( chipType+" 150 150 "));
+      cktList.add(c);
+      chips.setSelectedIndex(0);
+   }
+   
 	public void makeLight (int color)
    {
       cktList.add( Light.makeLight(lights.getSelectedIndex()));

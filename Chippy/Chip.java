@@ -16,36 +16,21 @@ public abstract class Chip extends RectangularPiece implements Serializable
    protected String chip74;
    protected boolean powered = false; // true iff chip has power
    
-   int powerpin = 14;
-   int groundpin = 7;
+   int powerPin = 14;
+   int groundPin = 7;
 
    // names of available chips.  MUST agree with method below.
    public static String[] chipNames =
       {"Choose a Chip", // 0
-       "7404", // 1
-       "7408", // 2
-       "7432",  // 3
-       "74377" // 4
+       "7404", 
+       "7408", 
+       "7432",  
+       "74175",
+       "74377" 
       };
-
-   // return a Chip object of type t1 from list above
-   // This is a bad way to code this.  Change it to localize all chip-particular
-   // information in the subclass for that type of chip.
-   public static Chip makeChip( int t1 )
-   {
-      //System.out.println("Chip.makeChip: entering ...");
-      Chip c = null;
-      switch ( t1 )
-      {
-          case 0: break;
-          case 1: c = new Chip7404(); break;
-          case 2: c = new Chip7408(); break;
-          case 3: c = new Chip7432(); break;
-          case 4: c = new Chip74377(); break;
-      }       
-      return c;
-   }
    
+   public static String getChipName( int i ) { return chipNames[i]; }
+
    public static Chip makeChip( StringTokenizer st )
    {
 
@@ -54,10 +39,11 @@ public abstract class Chip extends RectangularPiece implements Serializable
       try
       {
          String key = st.nextToken();
-         if      ( key.equals("7404" ) ) { c = new Chip7404(); }
-         else if ( key.equals("7408" ) ) { c = new Chip7408(); }
-         else if ( key.equals("7432" ) ) { c = new Chip7432(); }
-         else if ( key.equals("74377") ) { c = new Chip74377(); }
+         if      ( key.equals("7404"  ) ) { c = new Chip7404(); }
+         else if ( key.equals("7408"  ) ) { c = new Chip7408(); }
+         else if ( key.equals("7432"  ) ) { c = new Chip7432(); }
+         else if ( key.equals("74175" ) ) { c = new Chip74175(); }
+         else if ( key.equals("74377" ) ) { c = new Chip74377(); }
           
          int x = Integer.parseInt( st.nextToken() );
          int y = Integer.parseInt( st.nextToken() );
@@ -101,8 +87,8 @@ public abstract class Chip extends RectangularPiece implements Serializable
       }
       
       // usual default
-      groundpin = numPins / 2;
-      powerpin = numPins;
+      groundPin = numPins / 2;
+      powerPin = numPins;
       
       troll(); // movePins();
    }
@@ -112,14 +98,14 @@ public abstract class Chip extends RectangularPiece implements Serializable
    // Returns value of powered.  
    public boolean checkPower()
    {
-      Pin gp = pinArray[groundpin]; 
-      Pin pp = pinArray[powerpin];
+      Pin gp = pinArray[groundPin]; 
+      Pin pp = pinArray[powerPin];
       
       if ( gp.needs || pp.needs )
       {
          powered = false;
-         Hole h0 = (Hole)(pinArray[groundpin].getBuddy());
-         Hole h5 = (Hole)(pinArray[powerpin].getBuddy());
+         Hole h0 = (Hole)(pinArray[groundPin].getBuddy());
+         Hole h5 = (Hole)(pinArray[powerPin].getBuddy());
          if ( h0!=null && h5!=null )
          {
             if (   h0.getIdrive() && h0.getVoltage()==0
@@ -145,13 +131,17 @@ public abstract class Chip extends RectangularPiece implements Serializable
    
    // set all of the pins to floating.  We do this when the chip is 
    // unpowered.  
-   public void setAllFloating()
+   public boolean setAllFloating()
    {
+      boolean changed = false;
+      
       for ( int i=0; i<numPins; i++ )
       {
          Pin p = pinArray[i];
-         p.setVoltage(3);
+         boolean ch = p.setVoltage(3);
+         changed |= ch;
       }
+      return changed;
    }
    
    public abstract boolean charge();

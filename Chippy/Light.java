@@ -32,7 +32,7 @@ public class Light extends Piece implements Serializable
           case 1: litey = new Light( Color.green ); break;
           case 2: litey = new Light( Color.yellow ); break;
           case 3: litey = new Light( Color.red ); break;
-          case 4: litey = new Light( Color.blue ); break;
+          case 4: litey = new Light( new Color(200,200,250) ); break; // blue
       }
       return litey;
    }
@@ -80,6 +80,12 @@ public class Light extends Piece implements Serializable
 		{g.setColor(c.darker());}
 		
 		g.fillOval( getX(), getY()+2, width, height );
+		
+		if (lit)
+		{
+		g.setColor( Color.white );
+		g.fillOval( getX()+2, getY()+4,4,4 );
+		}
 		
 		if (getSelected())
 		{
