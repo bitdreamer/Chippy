@@ -23,7 +23,9 @@ public abstract class Chip extends RectangularPiece implements Serializable
    public static String[] chipNames =
       {"Choose a Chip", // 0
        "7404", 
-       "7408", 
+       "7408",
+       "7411",
+       "7427",
        "7432",  
        "74175",
        "74377" 
@@ -41,6 +43,8 @@ public abstract class Chip extends RectangularPiece implements Serializable
          String key = st.nextToken();
          if      ( key.equals("7404"  ) ) { c = new Chip7404(); }
          else if ( key.equals("7408"  ) ) { c = new Chip7408(); }
+         else if ( key.equals("7411"  ) ) { c = new Chip7411(); }
+         else if ( key.equals("7427"  ) ) { c = new Chip7427(); }
          else if ( key.equals("7432"  ) ) { c = new Chip7432(); }
          else if ( key.equals("74175" ) ) { c = new Chip74175(); }
          else if ( key.equals("74377" ) ) { c = new Chip74377(); }
