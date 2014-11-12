@@ -8,6 +8,8 @@ import java.io.*;
 
 public class Chip7408 extends Chip implements Serializable
 {
+   boolean bug = false;
+   
     public Chip7408()
     {
        super(14); // 7408s have 14 pins.
@@ -29,14 +31,20 @@ public class Chip7408 extends Chip implements Serializable
    // This is for use with 1-14 pin numbering
    public boolean charge()
    {
+      if(bug) { System.out.print("Chip7408.charge ...");}
       boolean changed = false;
       
+      if (bug) { System.out.println(" power="+checkPower()); }
       if ( checkPower() )
-      {
-           changed |= doAndGate( 1, 2, 3 );
-           changed |= doAndGate( 4, 5, 6 );
-           changed |= doAndGate( 13, 12, 11 );
-           changed |= doAndGate( 10, 9, 8 );
+      {  boolean c;
+           c = doAndGate( 1, 2, 3 );
+           changed = changed || c;
+           c= doAndGate( 4, 5, 6 );
+           changed = changed || c;
+           c= doAndGate( 13, 12, 11 );
+           changed = changed || c;
+           c= doAndGate( 10, 9, 8 );
+           changed = changed || c;
       }
       else { setAllFloating(); }
       return changed;
@@ -46,10 +54,14 @@ public class Chip7408 extends Chip implements Serializable
    // output pin as AND of input pins' voltages
    public boolean doAndGate( Pin in1, Pin in2, Pin out1 )
    {
+      if(bug){ System.out.print("gate "+in1.index+" "+in2.index
+                 +" "+out1.index+ " :");}
       boolean changed = false; 
       
       int v1 = in1.getDrivenV(); // effective voltage on pin1
       int v2 = in2.getDrivenV();
+      
+      if(bug){ System.out.println("v1="+v1+" v2="+v2);}
 
       // out1.setIdrive(true); is set permanently in constructor 
       if ( v1>=3 && v2>=3 ) { changed |= out1.setVoltage(4); } // here is the AND

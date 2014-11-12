@@ -83,9 +83,9 @@ public abstract class Chip extends RectangularPiece implements Serializable
       for ( int j=1; j<=numPins/2; j++ )
       {
           int k = numPins-j+1;
-          pinArray[j] = new Pin(this,-10,y); // Pin( xanchor-10, y, j, this );
+          pinArray[j] = new Pin(this,-10,y, j); // Pin( xanchor-10, y, j, this );
           connectix.add(pinArray[j]);
-          pinArray[k] = new Pin(this,20,y); // Pin( xanchor+20, y, k, this );
+          pinArray[k] = new Pin(this,20,y, numPins+1-j); // Pin( xanchor+20, y, k, this );
           connectix.add(pinArray[k]);
           y += 10;
       }

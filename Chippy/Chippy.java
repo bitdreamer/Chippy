@@ -1,3 +1,4 @@
+
 // Chippy.java
 // This is the top file for Chippy.
 /*
@@ -104,7 +105,7 @@ public class Chippy extends JFrame implements ActionListener
 		removeButton  = new JButton   ("Clear All");
 		loadButton    = new JButton   ("Load");
       chips = makeComboBox( Chip.chipNames );
-		wires         = new JComboBox (wireNames);
+		wires         = new JComboBox (wireNames);  //wires.
 		switches      = new JComboBox (switchNames);
       lights = makeComboBox( Light.lightNames );
 		aboutButton   = new JButton   ("About");

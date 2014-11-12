@@ -12,6 +12,7 @@ public class FF implements Serializable
     boolean theBit; // This is the stored bit, true=high.
     Pin pinin;
     Pin pinout;
+    Pin pinoutbar;
     static int count=0; // fix - what is this for?
     
     public FF( Pin p1, Pin p2 )
@@ -22,15 +23,37 @@ public class FF implements Serializable
         pinout.setIdrive(true);
     }
     
+    // constructor ... adds q-bar pin
+    public FF( Pin p1, Pin p2, Pin p3 )
+    {
+        theBit = true;
+        pinin = p1;
+        pinout = p2;
+        pinoutbar = p3;
+        pinout.setIdrive(true);
+        pinoutbar.setIdrive(true);
+    }
+    
     // clockIt.  propogate the input to the output
     // return: if this changes the output, return true, else return false
     public boolean clockIt()
     {
         boolean changed=false;
+        boolean c;
 
         int vin = pinin.getDrivenV(); // the input voltage
-        if ( vin>=3 ) { changed |= pinout.setVoltage(4); }
-        else          { changed |= pinout.setVoltage(1); }
+        if ( vin>=3 ) 
+        { 
+           c = pinout.setVoltage(4); changed = changed || c; 
+           c = pinoutbar.setVoltage(1); changed = changed || c; 
+        }
+      
+  
+        else          
+        { 
+           c = pinout.setVoltage(1); changed = changed || c;
+           c = pinoutbar.setVoltage(4); changed = changed || c;
+        }
 
         return changed;
     }

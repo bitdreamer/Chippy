@@ -11,6 +11,7 @@ import java.io.*;
 
 public class Chip74175 extends Chip implements Serializable
 {
+   boolean bug = true;
    boolean clock; // true if the clock was up on last charge
    FF[] theFFs;
    int clockPin = 9;
@@ -22,10 +23,10 @@ public class Chip74175 extends Chip implements Serializable
       height = 75;
        chip74 = "74175";
        theFFs = new FF[4];
-       theFFs[0] = new FF( pinArray[4],  pinArray[2] );
-       theFFs[1] = new FF( pinArray[5],  pinArray[7] );
-       theFFs[2] = new FF( pinArray[12], pinArray[10] );
-       theFFs[3] = new FF( pinArray[13], pinArray[15] );
+       theFFs[0] = new FF( pinArray[4],  pinArray[2], pinArray[3] );
+       theFFs[1] = new FF( pinArray[5],  pinArray[7], pinArray[6] );
+       theFFs[2] = new FF( pinArray[12], pinArray[10], pinArray[11] );
+       theFFs[3] = new FF( pinArray[13], pinArray[15], pinArray[14] );
        clock = false;
    }
 
@@ -34,17 +35,7 @@ public class Chip74175 extends Chip implements Serializable
    @Override
    public boolean charge()
    {
-      /*
-      chargeb();
-      return true;
-   }
-
-   // charge.  if there is power to the chip and the clock has gone up
-   // clock each flip flop. 
-   @Override
-   public boolean chargeb()
-   {
-      */
+      if(bug){ System.out.println("Chip74175.charge: power=" + checkPower()); }
       boolean changed = false;
       boolean ch;
       if ( checkPower() )

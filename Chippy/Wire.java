@@ -12,7 +12,7 @@ import java.io.*;
 
 public class Wire extends Piece implements Serializable
 {
-   static boolean bug = true;
+   static boolean bug = false;
 
 	private String color; // this wire is this color
 	private Pin endpoint1, endpoint2; 

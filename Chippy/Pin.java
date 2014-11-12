@@ -14,15 +14,28 @@ public class Pin extends Connectic
   	protected int width;     // horizontal size ...
   	protected Color c;			// the color of this pin
   	protected String name;
+  	protected int index; // index of pin in a chip, works for some?
 
    // constructor.  takes piece this is attached to and relative coords
    public Pin( Piece p, int xr, int yr )
    {
       super( p, xr, yr );
       //System.out.println("Pin.Pin: xr="+xr+" yr="+yr);
-	  	height = 5;
-	  	width = 5;
-	  	c = Color.black;
+      height = 5;
+      width = 5;
+      c = Color.black;
+   }
+   
+   // constructor.  takes piece this is attached to and relative coords
+   // Also takes this pins index in this chip if any
+   public Pin( Piece p, int xr, int yr, int index1 )
+   {
+      super( p, xr, yr );
+      //System.out.println("Pin.Pin: xr="+xr+" yr="+yr);
+      height = 5;
+      width = 5;
+      c = Color.black;
+      index = index1;
    }
 
 	//--------------------------------------------------------------------------
@@ -93,8 +106,13 @@ public class Pin extends Connectic
    // If there is no hole, clear
    public void findAHole()
 	{
+      // h is the hole you are supposed to be in
       Hole h = theChippy.findAHole(xab, yab);
+      
+      // disconnect from old buddy is it exists and is not h
       if( buddy!=null && buddy!=h ) { buddy.setBuddy(null); }
+      
+      // if h is not null, connect to it
 		if (h != null)
 		{
          buddy = h;
