@@ -14,7 +14,7 @@ public class FF implements Serializable
     Pin pinout;
     Pin pinoutbar;
     static int count=0; // fix - what is this for?
-    
+   /* 
     public FF( Pin p1, Pin p2 )
     {
         theBit = true;
@@ -22,7 +22,7 @@ public class FF implements Serializable
         pinout = p2;
         pinout.setIdrive(true);
     }
-    
+   */ 
     // constructor ... adds q-bar pin
     public FF( Pin p1, Pin p2, Pin p3 )
     {
