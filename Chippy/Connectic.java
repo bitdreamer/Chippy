@@ -150,6 +150,9 @@ public class Connectic implements Serializable
    public Connectic getBuddy() { return buddy; }
 
    public boolean getIdrive() { return idrive; }
+   
+   // set idrive to given value and return true if this is a change.
+   // See idrive declaration 
    public boolean setIdrive( boolean b )
    {
       boolean changed = false;

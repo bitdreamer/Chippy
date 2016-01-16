@@ -20,7 +20,7 @@ public class Battery extends RectangularPiece implements Serializable
   
 	public Battery() 
 	{
-      xanchor = 738; yanchor = 180;
+      xanchor = 78; yanchor = 120;
       width = 40; height = 20;
 		   
 		groundHole = new Hole(this,2,20);

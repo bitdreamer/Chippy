@@ -300,10 +300,11 @@ public class Chippy extends JFrame implements ActionListener
    }
 
 
-   // saves the circuit to a .chpy file (text)
+   // saves the circuit to a .chpy file (text).
+   // FIX so far I think the user must type the ".chpy".  
    public void save()
    {
-      int result = fc.showSaveDialog(this);
+      int result = fc.showSaveDialog(this); 
       
       if (result == JFileChooser.APPROVE_OPTION)
       {
@@ -447,26 +448,18 @@ public class Chippy extends JFrame implements ActionListener
     {
         if ( numBoards<5 )
         {
-            Board b = new Board( 590-numBoards*140,180 );
+            //Board b = new Board( 590-numBoards*140,180 );
+            Board b = new Board( 20 + numBoards*140,180 );
             cktList.add(b);
             numBoards++;
         }
     }
-/*
-   // contruct chip of menu type, put in list of circuit components
-   public void makeChip()
-   {
-      //System.out.println("Chippy.makeChip: entering ... ");
-      Chip c = Chip.makeChip(chips.getSelectedIndex());
-      cktList.add(c);
-      chips.setSelectedIndex(0);
-   }
-*/
+
    public void makeChip()
    {
       String chipType = Chip.getChipName(chips.getSelectedIndex());
       if (bug) { System.out.println("Chippy.makeChip: about to make type "+chipType ); }
-      Chip c = Chip.makeChip( new StringTokenizer( chipType+" 150 150 "));
+      Chip c = Chip.makeChip( new StringTokenizer( chipType+" 150 100 "));
       cktList.add(c);
       chips.setSelectedIndex(0);
    }
@@ -575,21 +568,21 @@ public class Chippy extends JFrame implements ActionListener
 	// draws all the components on the component list
 	//-----------------------------------------------------------------
    @Override
-    public void paint (Graphics g) 
-	 {
+   public void paint (Graphics g) 
+   {
 	 	super.paint(g);
 		drawTrash(g);
       
       g.setColor( Color.black );
-      // g.fillRect( curX, curY, 3, 3 ); 
+      // g.fillRect( curX, curY, 3, 3 );
 	        
-      Iterator i = cktList.iterator();
-	   while (i.hasNext()) 
-		{
-   		Piece p = (Piece)i.next();
-			p.draw(g);
-	   }
-	 }	 
+      Iterator <Piece>  i = cktList.iterator();
+	  while (i.hasNext()) 
+	  {
+         Piece p = i.next();
+         p.draw(g);
+	  }
+   }	 
    
    public LinkedList <Piece> getCktList() { return cktList; }
 }
