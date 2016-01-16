@@ -105,7 +105,8 @@ public class Chippy extends JFrame implements ActionListener
 		removeButton  = new JButton   ("Clear All");
 		loadButton    = new JButton   ("Load");
       chips = makeComboBox( Chip.chipNames );
-		wires         = new JComboBox (wireNames);  //wires.
+		//wires         = new JComboBox (wireNames);  //wires.
+      //wires = Wire.getChoiceBox();
 		switches      = new JComboBox (switchNames);
       lights = makeComboBox( Light.lightNames );
 		aboutButton   = new JButton   ("About");
@@ -114,7 +115,8 @@ public class Chippy extends JFrame implements ActionListener
       //fix - anything left below needs to be converted to the
       // way we do Chip and Light, or boardButton and batteryButton.
       // And then it will disappear from this section.
-		controlies.add( wires );
+//		controlies.add( wires );
+      controlies.add( wires = (Wire.getChoiceBox()) );
 		controlies.add( switches );
 	   controlies.add( removeButton );
 	   controlies.add( loadButton );
@@ -482,9 +484,11 @@ public class Chippy extends JFrame implements ActionListener
     {
         if (numBoards >0 )
         {
-            int colorNum = wires.getSelectedIndex();
+            //int colorNum = wires.getSelectedIndex();
+           Color c = Wire.whatColor(  (String)(wires.getSelectedItem()) );
             wires.setSelectedIndex(0);
-            Wire w = new Wire( 190, 90, colorNum );
+            // Wire w = new Wire( 190, 90, colorNum );
+            Wire w = new Wire( 190, 90, c );
             cktList.add(w);
         }
     }
