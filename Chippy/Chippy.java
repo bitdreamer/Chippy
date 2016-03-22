@@ -64,7 +64,7 @@ public class Chippy extends JFrame implements ActionListener
 	private Insets inset;   			// this is the unusable area of the frame
   
    private int wireColor;
-	private int lightColor;
+	//private int lightColor;
 	
    public static void main(String args[]) 
    {
@@ -104,16 +104,10 @@ public class Chippy extends JFrame implements ActionListener
 	 	// This panel is actually taking over the whole screen.  We just
 	 	// want it to be the place where the buttons are.  Fix it.
 
-      //boardButton = makeButton("New Board");
-      //batteryButton = makeButton("Battery");
 		saveButton 	  = makeButton("Save"); //new JButton   ("Save");
 		removeButton  = new JButton   ("Clear All");
 		loadButton    = new JButton   ("Load");
-      //chips = makeComboBox( Chip.chipNames );
-		//wires         = new JComboBox (wireNames);  //wires.
-      //wires = Wire.getChoiceBox();
 		switches      = new JComboBox (switchNames);
-      //lights = makeComboBox( Light.lightNames );
 		aboutButton   = new JButton   ("About");
 		chargeOne     = new JButton   ("charge 1");
 
