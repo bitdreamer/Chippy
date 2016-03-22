@@ -5,9 +5,13 @@
 // The Clear singnal has to be high for it to work. (Low resets all Qs low 
 // independent of inputs or clock.) 
 
-package Chippy;
+package plugs;
 
 import java.io.*;
+
+import Chippy.FF;
+import Chippy.Hole;
+import Chippy.Pin;
 
 public class Chip74175 extends Chip implements Serializable
 {

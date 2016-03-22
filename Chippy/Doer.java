@@ -11,6 +11,9 @@ import java.awt.*;
 import java.util.StringTokenizer;
 
 import plugs.Battery;
+import plugs.Board;
+import plugs.Chip;
+import plugs.Light;
 
 public class Doer
 {

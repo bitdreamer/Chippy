@@ -3,8 +3,10 @@
 // ... and Barry
 // this is a tripple 3-input AND chip
 
-package Chippy;
+package plugs;
 import java.io.*;
+
+import Chippy.Pin;
 
 public class Chip7411 extends Chip implements Serializable
 {

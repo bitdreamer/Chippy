@@ -1,9 +1,13 @@
 // Chippy.java					Susan Hwang and Samah Kattan 2005
 // also Samah and Emily  .... and Barry
 
-package Chippy;
+package plugs;
 import java.awt.*;
 import java.io.*;
+
+import Chippy.Chippy;
+import Chippy.Piece;
+import Chippy.Pin;
 
 public class Light extends Piece implements Serializable
 {

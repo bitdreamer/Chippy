@@ -1,10 +1,14 @@
-package Chippy;
+package plugs;
 // ChipFlop.java
 // Barrett Koster 2005
 // Chip that is a flip flop (D)
 // positive edge trigger on pin 11
 
 import java.io.*;
+
+import Chippy.FF;
+import Chippy.Hole;
+import Chippy.Pin;
 
 public class Chip74377 extends Chip implements Serializable
 {

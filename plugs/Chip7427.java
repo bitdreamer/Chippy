@@ -1,9 +1,11 @@
-package Chippy;
+package plugs;
 // Chip7427.java
 
 // this is a tripple 3-input NOR chip
 
 import java.io.*;
+
+import Chippy.Pin;
 
 public class Chip7427 extends Chip implements Serializable
 {

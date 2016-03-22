@@ -10,11 +10,11 @@ import java.util.*;
 
 public class PutLight extends Put
 {
-   JComboBox <Chippy.Light> cb;
+   JComboBox <plugs.Light> cb;
    
    public PutLight()
    {
-      cb = makeComboBox(Chippy.Light.lightNames);
+      cb = makeComboBox(plugs.Light.lightNames);
    }
    
    // get the light color from the menu, make a new light of that
@@ -24,10 +24,10 @@ public class PutLight extends Put
    {
 
             //Board b = new Board( 590-numBoards*140,180 );
-            Chippy.Light c;
+            plugs.Light c;
             
        int lightType = cb.getSelectedIndex();
-       c = Chippy.Light.makeLight(  lightType );
+       c = plugs.Light.makeLight(  lightType );
        theChippy.addToCktList( c );
       cb.setSelectedIndex(0);  
    }	

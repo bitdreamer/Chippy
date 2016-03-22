@@ -1,9 +1,11 @@
-package Chippy;
+package plugs;
 // Chip32.java
 // Edited by Samah and Emily and Susan
 // this is a quad OR chip
 
 import java.io.*;
+
+import Chippy.Pin;
 
 public class Chip7432 extends Chip implements Serializable
 {

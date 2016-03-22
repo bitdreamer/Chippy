@@ -8,6 +8,8 @@ package Chippy;
 import java.awt.*;
 import java.io.*;
 
+import plugs.Board;
+
 public class Cluster extends Piece implements Serializable
 {
    protected Board myBoard; // have to be in a Board

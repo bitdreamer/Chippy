@@ -1,4 +1,4 @@
-package Chippy;
+package plugs;
 // Chip.java
 // Edited by Samah and Emily and Susan
 // Barrett Koster 2005 edits ....
@@ -6,6 +6,8 @@ package Chippy;
 import java.awt.*;
 import java.io.*;
 import java.util.*;
+
+import Chippy.*;
 
 public abstract class Chip extends RectangularPiece implements Serializable
 {
@@ -105,7 +107,7 @@ public abstract class Chip extends RectangularPiece implements Serializable
       Pin gp = pinArray[groundPin]; 
       Pin pp = pinArray[powerPin];
       
-      if ( gp.needs || pp.needs )
+      if ( gp.getNeeds() || pp.getNeeds() )
       {
          powered = false;
          Hole h0 = (Hole)(pinArray[groundPin].getBuddy());
@@ -117,7 +119,8 @@ public abstract class Chip extends RectangularPiece implements Serializable
                )
             { powered = true; setAllNeeds(); }
          }
-         gp.needs = pp.needs = false; // These don't need attention any more; you just did it.
+         //gp.needs = pp.needs = false; // These don't need attention any more; you just did it.
+         gp.setNeeds(false); pp.setNeeds(false);
       }
       return powered;
    }
@@ -129,7 +132,7 @@ public abstract class Chip extends RectangularPiece implements Serializable
       for ( int i=0; i<numPins; i++ )
       {
          Pin p = pinArray[i];
-         if ( !p.idrive ) { p.needs = true; }
+         if ( !p.getIdrive() ) { p.setNeeds(true); }
       }
    }
    

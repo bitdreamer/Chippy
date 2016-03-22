@@ -21,6 +21,9 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import plugs.Board;
+import plugs.Chip74377;
+
 import java.awt.event.*;
 import java.awt.Graphics;
 import java.util.*;

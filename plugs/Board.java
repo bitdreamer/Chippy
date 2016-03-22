@@ -8,12 +8,16 @@
 // when you move holes, anything plugged in should go with.  Wires stretch
 // and I don't think anything else spans two board.  So this should be ok.
 
-package Chippy;
+package plugs;
 
 import java.awt.*;
 import java.io.*;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import Chippy.Cluster;
+import Chippy.Hole;
+import Chippy.Piece;
 
 public class Board extends Piece implements Serializable
 {

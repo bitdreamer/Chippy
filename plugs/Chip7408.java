@@ -3,8 +3,10 @@
 // ... and Barry
 // this is an AND chip
 
-package Chippy;
+package plugs;
 import java.io.*;
+
+import Chippy.Pin;
 
 public class Chip7408 extends Chip implements Serializable
 {

@@ -22,7 +22,7 @@ public class PutBoard extends Put
       if ( numBoards<5 )
         {
             //Board b = new Board( 590-numBoards*140,180 );
-            theChippy.addToCktList( new Chippy.Board( 20 + (numBoards++)*140,180 ) );
+            theChippy.addToCktList( new plugs.Board( 20 + (numBoards++)*140,180 ) );
             theChippy.incNumBoards();
         }
    }	

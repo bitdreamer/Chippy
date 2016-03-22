@@ -10,11 +10,11 @@ import java.util.*;
 
 public class PutChip extends Put
 {
-   JComboBox <Chippy.Chip> cb;
+   JComboBox <plugs.Chip> cb;
    
    public PutChip()
    {
-      cb = makeComboBox(Chippy.Chip.chipNames);
+      cb = makeComboBox(plugs.Chip.chipNames);
    }
    
    // get the chip name from the combo box, make a new one of
@@ -24,10 +24,10 @@ public class PutChip extends Put
    {
 
             //Board b = new Board( 590-numBoards*140,180 );
-            Chippy.Chip c;
+            plugs.Chip c;
             
-                  String chipType = Chippy.Chip.getChipName(cb.getSelectedIndex());
-       c = Chippy.Chip.makeChip( new StringTokenizer( chipType+" 150 100 "));
+                  String chipType = plugs.Chip.getChipName(cb.getSelectedIndex());
+       c = plugs.Chip.makeChip( new StringTokenizer( chipType+" 150 100 "));
        theChippy.addToCktList( c );
       cb.setSelectedIndex(0);
 

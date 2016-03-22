@@ -2,8 +2,10 @@
 // Edited by Samah and Emily and Susan and Barry
 // This class does a 7404 hex inverter.
 
-package Chippy;
+package plugs;
 import java.io.*;
+
+import Chippy.Pin;
 
 public class Chip7404 extends Chip implements Serializable
 {

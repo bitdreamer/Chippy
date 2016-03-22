@@ -149,7 +149,7 @@ public class Connectic implements Serializable
    public void setBuddy( Connectic b ) { buddy = b; }
    public Connectic getBuddy() { return buddy; }
 
-   public boolean getIdrive() { return idrive; }
+   //public boolean getIdrive() { return idrive; }
    
    // set idrive to given value and return true if this is a change.
    // See idrive declaration 
@@ -172,4 +172,6 @@ public class Connectic implements Serializable
    public void setNeeds( ) { if (!idrive) { needs=true; } }
    
    public void setNeeds( boolean tf ) { needs = tf; }
+   public boolean getNeeds() { return needs; }
+   public boolean getIdrive() { return idrive; }
 }
