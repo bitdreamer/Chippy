@@ -20,6 +20,9 @@ public class Light extends Piece implements Serializable
        "red",  // 3
        "blue" // 4
       };
+      
+   public static String getLightName( int i ) { return lightNames[i]; }
+
 
    // return a Light object of type t1 from list above
    public static Light makeLight( int t1 )

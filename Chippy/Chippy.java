@@ -44,14 +44,14 @@ public class Chippy extends JFrame implements ActionListener
 
 	// GUI elements
    //private JButton boardButton;	 	// displays a board
-   //private JButton batteryButton;	// diplays a battery
+   //private JButton batteryButton;	// displays a battery
 	private JButton removeButton;   	// clear all the object on the circuit
 	private JButton saveButton;	   // saves the objects displayed on the circuit
 	private JButton loadButton;	   // loads the saved objects from a file
    //private JComboBox<Chip> chips;      // user selects which chip (type)
    private JComboBox wires;      // selects which wire the user wants
    private JComboBox switches;   // selects which switch the user wants
-   private JComboBox lights;     // selects which light the user wants
+   //private JComboBox lights;     // selects which light the user wants
 	private JButton aboutButton;     // about the program
    private JButton chargeOne;       // call charge just once
 	   
@@ -113,7 +113,7 @@ public class Chippy extends JFrame implements ActionListener
 		//wires         = new JComboBox (wireNames);  //wires.
       //wires = Wire.getChoiceBox();
 		switches      = new JComboBox (switchNames);
-      lights = makeComboBox( Light.lightNames );
+      //lights = makeComboBox( Light.lightNames );
 		aboutButton   = new JButton   ("About");
 		chargeOne     = new JButton   ("charge 1");
 
@@ -271,8 +271,7 @@ public class Chippy extends JFrame implements ActionListener
 			else 
 			*/
 			if (e.getSource() == wires)         { makeWire(); }
-			else if (e.getSource() == lights) 
-               {makeLight(lights.getSelectedIndex());}
+			//else if (e.getSource() == lights)                {makeLight(lights.getSelectedIndex());}
 			else if (e.getSource() == switches) { makeSwitch(); }
 			else if (e.getSource() == removeButton) {removeAllParts();}
 			else if (e.getSource() == saveButton) {save();}
@@ -454,12 +453,13 @@ public class Chippy extends JFrame implements ActionListener
       cktList.add(c);
       chips.setSelectedIndex(0);
    }
- */  
+ 
 	public void makeLight (int color)
    {
       cktList.add( Light.makeLight(lights.getSelectedIndex()));
       lights.setSelectedIndex(0);
 	}
+*/
   
     // makeWire.  creates new wire (if there's a board to put it on)
     // and adds it to the cktList.  Pulls color from menu and 
@@ -567,4 +567,5 @@ public class Chippy extends JFrame implements ActionListener
    public LinkedList <Piece> getCktList() { return cktList; }
    
    public void addToCktList( Piece p ) { cktList.add(p); repaint(); }
+   public void incNumBoards() { numBoards++; }
 }

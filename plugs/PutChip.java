@@ -17,7 +17,8 @@ public class PutChip extends Put
       cb = makeComboBox(Chippy.Chip.chipNames);
    }
    
-   // add a new Board to the circuit layout in Chippy
+   // get the chip name from the combo box, make a new one of
+   // that type, and add it to the circuit in Chippy
    @Override
    public void actionPerformed( ActionEvent e )
    {

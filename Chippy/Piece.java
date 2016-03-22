@@ -23,8 +23,8 @@ public abstract class Piece implements Serializable
     public Piece()
     {
       name = "thingy";
-		xanchor = 130;
-		yanchor = 130;
+		xanchor = 200;
+		yanchor = 100;
 		height = 20;
 		width = 20;
       connectix = new LinkedList();
