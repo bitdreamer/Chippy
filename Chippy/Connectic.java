@@ -168,5 +168,8 @@ public class Connectic implements Serializable
    public static void setTheChippy(Chippy x){theChippy = x; }
    
    // connectics that are drivers never need attention (needs). 
+   
    public void setNeeds( ) { if (!idrive) { needs=true; } }
+   
+   public void setNeeds( boolean tf ) { needs = tf; }
 }

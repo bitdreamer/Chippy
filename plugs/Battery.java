@@ -1,9 +1,12 @@
 // Battery.java  
 // Samah and Emily 2005
 
-package Chippy;
+package plugs;
 import java.awt.*;
 import java.io.*;
+
+import Chippy.Hole;
+import Chippy.RectangularPiece;
 
 public class Battery extends RectangularPiece implements Serializable 
 {
@@ -26,13 +29,13 @@ public class Battery extends RectangularPiece implements Serializable
 		groundHole = new Hole(this,2,20);
 		groundHole.setVoltage(0);  	//ground
       groundHole.setIdrive(true);
-      groundHole.needs = false;
+      groundHole.setNeeds(false);//groundHole.needs = false;
       
       connectix.add(groundHole);
 		posHole = new Hole(this, 2, 10);
 		posHole.setVoltage(5); 			//postive voltage
       posHole.setIdrive(true);
-      posHole.needs = false;
+      posHole.setNeeds(false); //posHole.needs = false;
       
       connectix.add(posHole);
       name="battery";

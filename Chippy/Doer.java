@@ -10,6 +10,8 @@ import java.awt.*;
 
 import java.util.StringTokenizer;
 
+import plugs.Battery;
+
 public class Doer
 {
    Chippy theChippy;

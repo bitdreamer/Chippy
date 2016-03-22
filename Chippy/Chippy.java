@@ -40,14 +40,15 @@ public class Chippy extends JFrame implements ActionListener
    private String[] switchNames = {"Choose a Switch", "Toggle", "Push Button"};
 	final JFileChooser fc;
 		  
+   Controller boss;
 
 	// GUI elements
-   private JButton boardButton;	 	// displays a board
-   private JButton batteryButton;	// diplays a battery
+   //private JButton boardButton;	 	// displays a board
+   //private JButton batteryButton;	// diplays a battery
 	private JButton removeButton;   	// clear all the object on the circuit
 	private JButton saveButton;	   // saves the objects displayed on the circuit
 	private JButton loadButton;	   // loads the saved objects from a file
-   private JComboBox<Chip> chips;      // user selects which chip (type)
+   //private JComboBox<Chip> chips;      // user selects which chip (type)
    private JComboBox wires;      // selects which wire the user wants
    private JComboBox switches;   // selects which switch the user wants
    private JComboBox lights;     // selects which light the user wants
@@ -75,10 +76,14 @@ public class Chippy extends JFrame implements ActionListener
    public Chippy() 
 	{
  		super("Chippy");
+ 		
+ 		plugs.Put.setTheChippy(this);
       setDefaultCloseOperation(EXIT_ON_CLOSE);
 		Connectic.setTheChippy(this);
       Wire.setTheChippy(this);
       theDoer = new Doer(this);
+      
+      boss = new Controller( this );
 		
 		Container container = getContentPane();
 			       
@@ -99,12 +104,12 @@ public class Chippy extends JFrame implements ActionListener
 	 	// This panel is actually taking over the whole screen.  We just
 	 	// want it to be the place where the buttons are.  Fix it.
 
-      boardButton = makeButton("New Board");
-      batteryButton = makeButton("Battery");
+      //boardButton = makeButton("New Board");
+      //batteryButton = makeButton("Battery");
 		saveButton 	  = makeButton("Save"); //new JButton   ("Save");
 		removeButton  = new JButton   ("Clear All");
 		loadButton    = new JButton   ("Load");
-      chips = makeComboBox( Chip.chipNames );
+      //chips = makeComboBox( Chip.chipNames );
 		//wires         = new JComboBox (wireNames);  //wires.
       //wires = Wire.getChoiceBox();
 		switches      = new JComboBox (switchNames);
@@ -261,11 +266,11 @@ public class Chippy extends JFrame implements ActionListener
  	public void actionPerformed(ActionEvent e) 
 	{
 		try 
-		{
-			if	     (e.getSource() == boardButton)   { makeBoard(); }
-            else if (e.getSource() == batteryButton) { makeBattery(); }
-			else if (e.getSource() == chips)         { makeChip(); }
-			else if (e.getSource() == wires)         { makeWire(); }
+		{ /*
+		    if (e.getSource() == chips)         { makeChip(); }
+			else 
+			*/
+			if (e.getSource() == wires)         { makeWire(); }
 			else if (e.getSource() == lights) 
                {makeLight(lights.getSelectedIndex());}
 			else if (e.getSource() == switches) { makeSwitch(); }
@@ -440,21 +445,7 @@ public class Chippy extends JFrame implements ActionListener
 			p.report();
 		}
    }
-	
-    // makeBoard creates a new Board, up to 5.  We space them out
-    // from the right of the panel, for staters.  Updates numBoards,
-    // adds new Board to cktList.
-    public void makeBoard()
-    {
-        if ( numBoards<5 )
-        {
-            //Board b = new Board( 590-numBoards*140,180 );
-            Board b = new Board( 20 + numBoards*140,180 );
-            cktList.add(b);
-            numBoards++;
-        }
-    }
-
+/*
    public void makeChip()
    {
       String chipType = Chip.getChipName(chips.getSelectedIndex());
@@ -463,7 +454,7 @@ public class Chippy extends JFrame implements ActionListener
       cktList.add(c);
       chips.setSelectedIndex(0);
    }
-   
+ */  
 	public void makeLight (int color)
    {
       cktList.add( Light.makeLight(lights.getSelectedIndex()));
@@ -499,18 +490,7 @@ public class Chippy extends JFrame implements ActionListener
             cktList.add(s);
         }
     }
-	
-	//-----------------------------------------------------------------
-	// makes a battery
-	//-----------------------------------------------------------------
-	public void makeBattery()
-	{
- 		Battery b  = new Battery();
-		//b.setName("battery");
-		cktList.add(b);
-		repaint();
-	}	
-	
+
 	// unselect all parts
    public void unSelectAll()
 	{
@@ -585,4 +565,6 @@ public class Chippy extends JFrame implements ActionListener
    }	 
    
    public LinkedList <Piece> getCktList() { return cktList; }
+   
+   public void addToCktList( Piece p ) { cktList.add(p); repaint(); }
 }
