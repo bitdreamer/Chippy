@@ -36,9 +36,9 @@ public class Chippy extends JFrame implements ActionListener
    private boolean itemSelected = false;// does a piece in the circuit window
                                       // have focus?
    private Piece selectedPiece;           // piece in focus, null=none
-   private String[] wireNames =   {"Choose a Wire", "Black", "Red"
-                                   ,"yellow","green","blue"
-                                  }; 
+   //private String[] wireNames =   {"Choose a Wire", "Black", "Red"
+   //                                ,"yellow","green","blue"
+   //                               }; 
    private String[] switchNames = {"Choose a Switch", "Toggle", "Push Button"};
 	final JFileChooser fc;
 		  

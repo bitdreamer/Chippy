@@ -1,7 +1,7 @@
 // Wire.java 
 // Susan Hwang and Samah Kattan  2005
 // Edited by Samah and Emily//=================================================================
-// Barrett Koster 2005 edits .... 214 edits ...
+// Barrett Koster 2005 edits .... 2014 edits ...
 
 // Wire represents a wire.  It has two pins on the ends and a color.
 
@@ -11,96 +11,21 @@ import java.awt.*;
 import java.io.*;
 import java.util.*;
 
-import javax.swing.JComboBox;
+//import javax.swing.JComboBox;
 
 public class Wire extends Piece implements Serializable
 {
    static boolean bug = false;
    static LinkedList <colorChoice> colors;
 
-	   private static String[] wireNames =   {"Choose a Wire", "black", "red"
-                                   ,"yellow","green","blue"
-                                  }; 
-
-	
-	private String color; // printable name for this color
+	//private String color; // printable name for this color
 	private Pin endpoint1, endpoint2; 
 	//private int wireLength = 40;
 	private Color c; // wire is this color
 	int pinSelected = 0;
 
   	protected static Chippy theChippy;
-  	/*
-  	public Wire( int x, int y, Color c1 )
-  	{
-  	}
-*/
-  	
-  	// This function returns a JComboBox object that contains all
-  	// of the current color choices
-  	static public JComboBox getChoiceBox()
-  	{
-  	   JComboBox jcb;
-  	   colors = new LinkedList <colorChoice> ();
-  	   
-  	   colorChoice cc; // temp., used in loop later, holds colorChoice, 
-  	   
-  	   // Here is the list of wire colors.  If you want a new color, add it here.
-      colors.add( new colorChoice( " Wires - black", Color.black ) );
-      colors.add( new colorChoice( "red", Color.red ) );
-      colors.add( new colorChoice( "yellow", Color.yellow ) );
-      colors.add( new colorChoice( "green", Color.green ) );
-      colors.add( new colorChoice( "blue", Color.blue ) );
-      colors.add( new colorChoice( "pink", new Color(255,200,200) ) );
-      
-      String[] ca = new String[colors.size()];
-      Iterator <colorChoice> it = colors.iterator();
-      for ( int i=0; i<colors.size(); i++ )
-      {
-         cc = it.next();
-         ca[i] = cc.name;
-      }
-  	   
-      jcb = new JComboBox( ca );
-  	   return jcb;
-  	}
-	
-  	// given a string name, returns the Color that goes with that.
-  	// It should never fail (return null), because the choices should always
-  	// come from the list we are looking in.
-  	static public Color whatColor( String n )
-  	{
-  	   Color c=null;
-  	   
-  	   boolean found = false;
-  	   Iterator <colorChoice> it = colors.iterator();
-  	   while ( !found && it.hasNext() )
-  	   {
-  	      colorChoice cc = it.next();
-  	      if ( cc.name.equals(n) ) { found = true; c = cc.color; }
-  	   }
-  	   return c;
-  	}
-	
-  	
-   // constructor
-   public Wire(int x , int y, int color)
-   {
-      xanchor = x; yanchor = y; name = "wire";
-      //super( x, y );
-      endpoint1 = new Pin(this,0,0); // Pin(x, y, "endpoint1", this);
-      //pins.add(endpoint1);
-      connectix.add(endpoint1);
-      endpoint2 = new Pin(this,0,50); // Pin(x, y+50, "endpoint2", this);
-      //pins.add(endpoint2);
-      connectix.add(endpoint2);
-      
-      if      (color == 1) {c = Color.black;}
-      else if (color == 2) {c = Color.red;}
-      else if ( color==3 ) { c = Color.yellow; }
-      else if ( color==4 ) { c = Color.green; }
-      else if ( color==5 ) { c = Color.blue; }
-   }
+
    // constructor
    public Wire(int x , int y, Color c1 )
    {
@@ -298,5 +223,5 @@ public class Wire extends Piece implements Serializable
    }
    
    // access
-   public static String[] getWireNames() { return wireNames; }
+   //public static String[] getWireNames() { return wireNames; }
 }
