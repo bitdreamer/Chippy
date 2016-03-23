@@ -36,10 +36,6 @@ public class Chippy extends JFrame implements ActionListener
    private boolean itemSelected = false;// does a piece in the circuit window
                                       // have focus?
    private Piece selectedPiece;           // piece in focus, null=none
-   //private String[] wireNames =   {"Choose a Wire", "Black", "Red"
-   //                                ,"yellow","green","blue"
-   //                               }; 
-  // private String[] switchNames = {"Choose a Switch", "Toggle", "Push Button"};
 	final JFileChooser fc;
 		  
    Controller boss;
@@ -47,7 +43,7 @@ public class Chippy extends JFrame implements ActionListener
 	// GUI elements
 	private JButton saveButton;	   // saves the objects displayed on the circuit
 	private JButton loadButton;	   // loads the saved objects from a file
-   private JComboBox switches;   // selects which switch the user wants
+  // private JComboBox switches;   // selects which switch the user wants
 	private JButton aboutButton;     // about the program
    private JButton chargeOne;       // call charge just once
 	   
@@ -59,23 +55,20 @@ public class Chippy extends JFrame implements ActionListener
 	private JPanel controlies;
 	private Insets inset;   			// this is the unusable area of the frame
   
-   private int wireColor;
-	//private int lightColor;
-	
    public static void main(String args[]) 
    {
       Chippy ch = new Chippy();
    } 
-
 	
 	// Creates a new instance of Chippy 
    public Chippy() 
-	{
- 		super("Chippy");
- 		
- 		plugs.Put.setTheChippy(this);
+   {
+      super("Chippy");
       setDefaultCloseOperation(EXIT_ON_CLOSE);
-		Connectic.setTheChippy(this);
+
+      // inform some classes where the main program is 		
+      plugs.Put.setTheChippy(this);
+      Connectic.setTheChippy(this);
       Wire.setTheChippy(this);
       theDoer = new Doer(this);
       
@@ -101,9 +94,7 @@ public class Chippy extends JFrame implements ActionListener
 	 	// want it to be the place where the buttons are.  Fix it.
 
 		saveButton 	  = makeButton("Save"); //new JButton   ("Save");
-		//removeButton  = new JButton   ("Clear All");
 		loadButton    = new JButton   ("Load");
-		//switches      = new JComboBox (switchNames);
 		aboutButton   = new JButton   ("About");
 		chargeOne     = new JButton   ("charge 1");
 
@@ -122,10 +113,7 @@ public class Chippy extends JFrame implements ActionListener
 	   // add listeners to buttons and ComboBoxes so they'll do something
       // fix: this list will disappear when all are done like Chip.
 		//=====================================================================
-		//removeButton.addActionListener ( this );
 		loadButton.addActionListener   ( this );	
-		//wires.addActionListener        ( this );
-		//switches.addActionListener     ( this );
 		aboutButton.addActionListener  ( this );
       chargeOne.addActionListener    ( this );
 			            
