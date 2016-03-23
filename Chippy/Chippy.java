@@ -49,7 +49,7 @@ public class Chippy extends JFrame implements ActionListener
 	private JButton saveButton;	   // saves the objects displayed on the circuit
 	private JButton loadButton;	   // loads the saved objects from a file
    //private JComboBox<Chip> chips;      // user selects which chip (type)
-   private JComboBox wires;      // selects which wire the user wants
+   //private JComboBox wires;      // selects which wire the user wants
    private JComboBox switches;   // selects which switch the user wants
    //private JComboBox lights;     // selects which light the user wants
 	private JButton aboutButton;     // about the program
@@ -114,8 +114,8 @@ public class Chippy extends JFrame implements ActionListener
       //fix - anything left below needs to be converted to the
       // way we do Chip and Light, or boardButton and batteryButton.
       // And then it will disappear from this section.
-	controlies.add( wires );
-      controlies.add( wires = (Wire.getChoiceBox()) );
+	//controlies.add( wires );
+    //  controlies.add( wires = (Wire.getChoiceBox()) );
 		controlies.add( switches );
 	   //controlies.add( removeButton );
 	   controlies.add( loadButton );

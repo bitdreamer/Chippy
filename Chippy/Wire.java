@@ -18,7 +18,7 @@ public class Wire extends Piece implements Serializable
    static boolean bug = false;
    static LinkedList <colorChoice> colors;
 
-	   private static String[] wireNames =   {"Choose a Wire", "Black", "Red"
+	   private static String[] wireNames =   {"Choose a Wire", "black", "red"
                                    ,"yellow","green","blue"
                                   }; 
 
@@ -64,7 +64,7 @@ public class Wire extends Piece implements Serializable
       jcb = new JComboBox( ca );
   	   return jcb;
   	}
-  	
+	
   	// given a string name, returns the Color that goes with that.
   	// It should never fail (return null), because the choices should always
   	// come from the list we are looking in.
@@ -81,7 +81,7 @@ public class Wire extends Piece implements Serializable
   	   }
   	   return c;
   	}
-  	
+	
   	
    // constructor
    public Wire(int x , int y, int color)
