@@ -39,19 +39,15 @@ public class Chippy extends JFrame implements ActionListener
    //private String[] wireNames =   {"Choose a Wire", "Black", "Red"
    //                                ,"yellow","green","blue"
    //                               }; 
-   private String[] switchNames = {"Choose a Switch", "Toggle", "Push Button"};
+  // private String[] switchNames = {"Choose a Switch", "Toggle", "Push Button"};
 	final JFileChooser fc;
 		  
    Controller boss;
 
 	// GUI elements
-	//private JButton removeButton;   	// clear all the object on the circuit
 	private JButton saveButton;	   // saves the objects displayed on the circuit
 	private JButton loadButton;	   // loads the saved objects from a file
-   //private JComboBox<Chip> chips;      // user selects which chip (type)
-   //private JComboBox wires;      // selects which wire the user wants
    private JComboBox switches;   // selects which switch the user wants
-   //private JComboBox lights;     // selects which light the user wants
 	private JButton aboutButton;     // about the program
    private JButton chargeOne;       // call charge just once
 	   
@@ -107,16 +103,14 @@ public class Chippy extends JFrame implements ActionListener
 		saveButton 	  = makeButton("Save"); //new JButton   ("Save");
 		//removeButton  = new JButton   ("Clear All");
 		loadButton    = new JButton   ("Load");
-		switches      = new JComboBox (switchNames);
+		//switches      = new JComboBox (switchNames);
 		aboutButton   = new JButton   ("About");
 		chargeOne     = new JButton   ("charge 1");
 
       //fix - anything left below needs to be converted to the
       // way we do Chip and Light, or boardButton and batteryButton.
       // And then it will disappear from this section.
-	//controlies.add( wires );
-    //  controlies.add( wires = (Wire.getChoiceBox()) );
-		controlies.add( switches );
+	//	controlies.add( switches );
 	   //controlies.add( removeButton );
 	   controlies.add( loadButton );
 		controlies.add( aboutButton );
@@ -131,7 +125,7 @@ public class Chippy extends JFrame implements ActionListener
 		//removeButton.addActionListener ( this );
 		loadButton.addActionListener   ( this );	
 		//wires.addActionListener        ( this );
-		switches.addActionListener     ( this );
+		//switches.addActionListener     ( this );
 		aboutButton.addActionListener  ( this );
       chargeOne.addActionListener    ( this );
 			            
@@ -266,9 +260,9 @@ public class Chippy extends JFrame implements ActionListener
 			*/
 		//	if (e.getSource() == wires)         { makeWire(); }
 		//	else 
-			if (e.getSource() == switches) { makeSwitch(); }
-			//else if (e.getSource() == removeButton) {removeAllParts();}
-			else if (e.getSource() == saveButton) {save();}
+		//	if (e.getSource() == switches) { makeSwitch(); }
+		//	else 
+			if (e.getSource() == saveButton) {save();}
 			else if (e.getSource() == loadButton) {load();}
 			else if (e.getSource() == aboutButton) { aboutBox();}
          else if (e.getSource() == chargeOne) { charge(); /*repo();*/ }
@@ -437,24 +431,8 @@ public class Chippy extends JFrame implements ActionListener
 			p.report();
 		}
    }
-/*  
-    // makeWire.  creates new wire (if there's a board to put it on)
-    // and adds it to the cktList.  Pulls color from menu and 
-    // resets it menu.
-    public void makeWire()
-    {
-        if (numBoards >0 )
-        {
-            //int colorNum = wires.getSelectedIndex();
-           Color c = Wire.whatColor(  (String)(wires.getSelectedItem()) );
-            wires.setSelectedIndex(0);
-            // Wire w = new Wire( 190, 90, colorNum );
-            Wire w = new Wire( 190, 90, c );
-            cktList.add(w);
-        }
-    }
-*/
-	
+
+/*	
 	// makes a switch (if there is a board to put it on)
     public void makeSwitch()
     {
@@ -468,7 +446,7 @@ public class Chippy extends JFrame implements ActionListener
             cktList.add(s);
         }
     }
-
+*/
 	// unselect all parts
    public void unSelectAll()
 	{

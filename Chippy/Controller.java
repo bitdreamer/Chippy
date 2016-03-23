@@ -29,6 +29,7 @@ public class Controller extends JFrame
       add( new plugs.PutLight() );
       add( new plugs.DoClear() );
       add( new plugs.PutWire() );
+      add( new plugs.PutSwitch() );
       
       setVisible(true);
    }
