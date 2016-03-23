@@ -28,7 +28,7 @@ public class PutLight extends Put
             
        int lightType = cb.getSelectedIndex();
        c = plugs.Light.makeLight(  lightType );
-       theChippy.addToCktList( c );
-      cb.setSelectedIndex(0);  
+       theChippy.addToCktList( c ); // has repaint in it
+      cb.setSelectedIndex(0); 
    }	
 }

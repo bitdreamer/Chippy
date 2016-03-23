@@ -18,6 +18,11 @@ public class Wire extends Piece implements Serializable
    static boolean bug = false;
    static LinkedList <colorChoice> colors;
 
+	   private static String[] wireNames =   {"Choose a Wire", "Black", "Red"
+                                   ,"yellow","green","blue"
+                                  }; 
+
+	
 	private String color; // printable name for this color
 	private Pin endpoint1, endpoint2; 
 	//private int wireLength = 40;
@@ -291,4 +296,7 @@ public class Wire extends Piece implements Serializable
 		//reset color
 		g2.setColor(c);
    }
+   
+   // access
+   public static String[] getWireNames() { return wireNames; }
 }

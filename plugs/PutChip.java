@@ -22,15 +22,11 @@ public class PutChip extends Put
    @Override
    public void actionPerformed( ActionEvent e )
    {
-
-            //Board b = new Board( 590-numBoards*140,180 );
-            plugs.Chip c;
+       plugs.Chip c;
             
-                  String chipType = plugs.Chip.getChipName(cb.getSelectedIndex());
+       String chipType = plugs.Chip.getChipName(cb.getSelectedIndex());
        c = plugs.Chip.makeChip( new StringTokenizer( chipType+" 150 100 "));
        theChippy.addToCktList( c );
-      cb.setSelectedIndex(0);
-
-       
+       cb.setSelectedIndex(0); 
    }	
 }
