@@ -45,13 +45,12 @@ public class PutWire extends Put
    public void actionPerformed( ActionEvent e )
    {
 
-       // if ( theChippy.numBoards >0 )
-        {
+      // if ( theChippy.numBoards >0 )
+      {
             String colorName = (String) (cb.getSelectedItem());
             cb.setSelectedIndex(0);
             Chippy.Wire w = makeWire( colorName);
             theChippy.addToCktList(w); // also does repaint
-        }
-
+      }
    }	
 }
