@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class PutBoard extends Put
 {
-   int numBoards=0; 
+   //int numBoards=0; 
    
    public PutBoard()
    {
@@ -19,10 +19,13 @@ public class PutBoard extends Put
    @Override
    public void actionPerformed( ActionEvent e )
    {
-      if ( numBoards<5 )
+      if ( theChippy.getBug() )
+      { System.out.println("PutBoard.actionPerformed: numBoards="+theChippy.getNumBoards() ); }
+   
+      if ( theChippy.getNumBoards()<5 )
         {
             //Board b = new Board( 590-numBoards*140,180 );
-            theChippy.addToCktList( new plugs.Board( 20 + (numBoards++)*140,180 ) );
+            theChippy.addToCktList( new plugs.Board( 20 + (theChippy.getNumBoards())*140,180 ) );
             theChippy.incNumBoards();
         }
    }	

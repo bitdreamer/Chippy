@@ -16,7 +16,7 @@ public class ChippyFilter extends FileFilter {
   @Override
   public boolean accept(File f) {
   
-    //let user seach beyond initial directory
+    //let user search beyond initial directory
     if (f.isDirectory()) {
 	   return true;      
 	 }

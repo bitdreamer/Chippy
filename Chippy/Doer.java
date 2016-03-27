@@ -50,10 +50,15 @@ public class Doer
    
    public Piece doBoard( StringTokenizer st )
    {
+      boolean bug = theChippy.getBug();
+      if (bug) { System.out.println("Doer.doBoard: entering ...."); }
+   
       int x = Integer.parseInt( st.nextToken() );
       int y = Integer.parseInt( st.nextToken() );
       Piece p = new Board(x,y);
       theChippy.getCktList().add( p );
+      theChippy.incNumBoards();
+      if (bug) { System.out.println("Doer.doBoard: exiting, numBoards="+theChippy.getNumBoards() ); }
       return p;
    }
    

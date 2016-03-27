@@ -30,13 +30,13 @@ public class Chippy extends JFrame implements ActionListener
    private boolean itemSelected = false;// does a piece in the circuit window
                                       // have focus?
    private Piece selectedPiece;           // piece in focus, null=none
-	final JFileChooser fc;
+//	final JFileChooser fc;
 		  
    Controller boss;
 
 	// GUI elements
-	private JButton saveButton;	   // saves the objects displayed on the circuit
-	private JButton loadButton;	   // loads the saved objects from a file
+	//private JButton saveButton;	   // saves the objects displayed on the circuit
+	//private JButton loadButton;	   // loads the saved objects from a file
   // private JComboBox switches;   // selects which switch the user wants
 	private JButton aboutButton;     // about the program
    private JButton chargeOne;       // call charge just once
@@ -71,12 +71,12 @@ public class Chippy extends JFrame implements ActionListener
 		Container container = getContentPane();
 			       
 		cktList = new LinkedList<Piece>();
-		
+	/*	
 		// create a file chooser for saving and loading files
 		fc = new JFileChooser();
 		ChippyFilter cf = new ChippyFilter(); 
 		fc.setFileFilter(cf);
-		
+	*/	
 		//int xq86oo4 = 354; // junk statment
 
         //create panel to build circuit
@@ -87,8 +87,8 @@ public class Chippy extends JFrame implements ActionListener
 	 	// This panel is actually taking over the whole screen.  We just
 	 	// want it to be the place where the buttons are.  Fix it.
 
-		saveButton 	  = makeButton("Save"); //new JButton   ("Save");
-		loadButton    = new JButton   ("Load");
+	//	saveButton 	  = makeButton("Save"); //new JButton   ("Save");
+	//	loadButton    = new JButton   ("Load");
 		aboutButton   = new JButton   ("About");
 		chargeOne     = new JButton   ("charge 1");
 
@@ -97,7 +97,7 @@ public class Chippy extends JFrame implements ActionListener
       // And then it will disappear from this section.
 	//	controlies.add( switches );
 	   //controlies.add( removeButton );
-	   controlies.add( loadButton );
+	//   controlies.add( loadButton );
 		controlies.add( aboutButton );
       controlies.add( chargeOne );
 	
@@ -107,7 +107,7 @@ public class Chippy extends JFrame implements ActionListener
 	   // add listeners to buttons and ComboBoxes so they'll do something
       // fix: this list will disappear when all are done like Chip.
 		//=====================================================================
-		loadButton.addActionListener   ( this );	
+//		loadButton.addActionListener   ( this );	
 		aboutButton.addActionListener  ( this );
       chargeOne.addActionListener    ( this );
 			            
@@ -244,9 +244,11 @@ public class Chippy extends JFrame implements ActionListener
 		//	else 
 		//	if (e.getSource() == switches) { makeSwitch(); }
 		//	else 
+		/*
 			if (e.getSource() == saveButton) {save();}
 			else if (e.getSource() == loadButton) {load();}
-			else if (e.getSource() == aboutButton) { aboutBox();}
+			else */
+			if (e.getSource() == aboutButton) { aboutBox();}
          else if (e.getSource() == chargeOne) { charge(); /*repo();*/ }
 		  	repaint();
 		}
@@ -273,7 +275,7 @@ public class Chippy extends JFrame implements ActionListener
        c.report();
    }
 
-
+/*
    // saves the circuit to a .chpy file (text).
    // FIX so far I think the user must type the ".chpy".  
    public void save()
@@ -346,7 +348,7 @@ public class Chippy extends JFrame implements ActionListener
 	   countBoards();
 	}
 	
-
+*/
    // findAHole. returns Hole at given xy
    // how: goes through list of components, asks each if it has a hole at xy
 	public Hole findAHole (int x, int y)
@@ -361,20 +363,6 @@ public class Chippy extends JFrame implements ActionListener
 	 	return h;
 	}
 	
-	// count the boards in the list and reset numBoards var
-	public void countBoards()
-	{
-	   numBoards = 0;  //reset
-		Iterator i = cktList.iterator();
-	   while (i.hasNext())
-		{
-			Piece p = (Piece) i.next();
-		 	//if(p.getName().equals("boards"))
-         if ( p instanceof Board )
-         { numBoards++; }
-		}
-	}
-
    // call charge 100 times or until nothing changes
    public void charge100()
    {
@@ -476,10 +464,26 @@ public class Chippy extends JFrame implements ActionListener
 	  }
    }	 
    
+   	// count the boards in the list and reset numBoards var
+	public void countBoards()
+	{
+	   numBoards = 0;  //reset
+		Iterator <Piece> i = cktList.iterator();
+	   while (i.hasNext())
+		{
+			Piece p =   i.next();
+		 	//if(p.getName().equals("boards"))
+         if ( p instanceof Board )
+         { numBoards++; }
+		}
+	}
+   
    public LinkedList <Piece> getCktList() { return cktList; }
    
    public void addToCktList( Piece p ) { cktList.add(p); repaint(); }
    public void clearCktList() { cktList = new LinkedList <Piece> (); }
-   public void incNumBoards() { numBoards++; }
-   
+   public int incNumBoards() { numBoards++; return numBoards; }
+   public Doer getTheDoer() { return theDoer; }
+   public int getNumBoards() { return numBoards; }
+   public boolean getBug() { return bug; }
 }

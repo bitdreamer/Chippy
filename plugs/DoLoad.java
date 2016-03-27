@@ -1,4 +1,4 @@
-// DoSave.java
+// DoLoad.java
 
 package plugs;
 
@@ -12,11 +12,12 @@ public class DoLoad extends Put
 {
    public DoLoad()
    {
-      makeButton("save");
+      makeButton("load");
    }
    
-   // saves the circuit to a .chpy file (text).
-   // FIX so far I think the user must type the ".chpy".  
+     	// this is for loading from a text file.
+	// It asks the user to pick a file, then loads it with 
+	// commands to record all of the Pieces.
    @Override
    public void actionPerformed( ActionEvent e )
    {
@@ -27,30 +28,54 @@ public class DoLoad extends Put
       Chippy.ChippyFilter cf = new Chippy.ChippyFilter(); 
       fc.setFileFilter(cf);
 
+	   try
+	   {
+         int result = fc.showOpenDialog(this); // this is where the user picks the file
       
-      int result = fc.showSaveDialog(this); 
-      
-      if (result == JFileChooser.APPROVE_OPTION)
-      {
-        File file = fc.getSelectedFile();
-        try
-        {
-           FileWriter fw = new FileWriter ( file );
-          // ObjectOutputStream oos = new ObjectOutputStream ( fos );
-           
-           Iterator <Chippy.Piece> i = theChippy.getCktList().iterator();
-           while ( i.hasNext() )
-           {
-              Chippy.Piece p = i.next();
-              fw.write ( p.saveMe() );
-           }
-           fw.flush();
-           fw.close();
-        }
-        catch ( Exception ee )
-        {
-           System.out.println( ee.toString() );
-        }
+         if (result == JFileChooser.APPROVE_OPTION)
+         {
+            File file = fc.getSelectedFile(); // ok, so what was that file?
+            FileReader fr = new FileReader(file);
+            BufferedReader bfr = new BufferedReader( fr );
+            
+            if ( bfr != null )
+            {
+                String line;
+                boolean done=false;
+                while (!done)
+                {
+                    line = null;
+                    try{ line = bfr.readLine(); }
+                    catch (EOFException ee) { done = true; } // doesn't work
+                    catch (IOException ee) 
+                    { System.out.println("Cmd.cmd: read error="+ee); done = true; }
+                    
+                    boolean bug = theChippy.getBug();
+                    if (bug)
+                    {
+                       System.out.println("DoLoad:actionPerformed: line="+line);
+                    }
+                    
+                    // detect end of file (this one works)
+                    if ( line ==null ) { done = true; }
+                    
+                    if ( !done )
+                    {
+                        theChippy.getTheDoer().doCom( line );
+                    }
+                    if (bug)
+                    {
+                       System.out.println("    after processing numBoards="+theChippy.getNumBoards());
+                    }
+                }
+            }
+         }
       }
+	   catch (Exception ee ) { System.out.println( ee.toString() );}
+	   //theChippy.countBoards();
+	   
+	   if (theChippy.getBug() )
+	   { System.out.println("DoLoad: numBoards="+theChippy.getNumBoards());}
+	   theChippy.repaint();
    }	
 }
