@@ -1,17 +1,11 @@
 
 // Chippy.java
-// This is the top file for Chippy.
+// This is the top file for Chippy, a TTL breadboard simulator.
 /*
  * Created 2005 in Software Engineering course (Barrett Koster)
- * @author - Susan Hwang and Samah Kattan
-   Edited by Emily and Samah (and Barry)
+ * @author2 - Susan Hwang, Samah Kattan, Emily, Samah, 
+
  *
- * This program needs to be tested.  It also needs a more chips.
- * In particular we need a chip that is an oscillator, generates
- * pulses.  I hope there is such a chip.
- * 
- * 2014 Chippy being revised (Barrett Koster) to have charging work
- * and lots of other things.
  *
 */
 
@@ -420,21 +414,6 @@ public class Chippy extends JFrame implements ActionListener
 		}
    }
 
-/*	
-	// makes a switch (if there is a board to put it on)
-    public void makeSwitch()
-    {
-        if ( numBoards>0 )
-        {
-            int swtype = switches.getSelectedIndex();
-            switches.setSelectedIndex(0);
-            Piece s;
-            if      ( swtype==1 ) { s = new ToggleSwitch(190,90); }
-            else                  { s = new PushButtonSwitch( 190,90); }
-            cktList.add(s);
-        }
-    }
-*/
 	// unselect all parts
    public void unSelectAll()
 	{
@@ -446,17 +425,6 @@ public class Chippy extends JFrame implements ActionListener
 		}
 
 	}
-
-/*
-	//-----------------------------------------------------------------
-	// removes all components on the screen
-	//-----------------------------------------------------------------
-	public void removeAllParts()
-	{
-		cktList.clear();
-		repaint();
-	}
-*/
 
 	
 	public void trash(int x, int y, Piece p)
@@ -513,4 +481,5 @@ public class Chippy extends JFrame implements ActionListener
    public void addToCktList( Piece p ) { cktList.add(p); repaint(); }
    public void clearCktList() { cktList = new LinkedList <Piece> (); }
    public void incNumBoards() { numBoards++; }
+   
 }

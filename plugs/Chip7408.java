@@ -56,8 +56,8 @@ public class Chip7408 extends Chip implements Serializable
    // output pin as AND of input pins' voltages
    public boolean doAndGate( Pin in1, Pin in2, Pin out1 )
    {
-      if(bug){ System.out.print("gate "+in1.index+" "+in2.index
-                 +" "+out1.index+ " :");}
+      if(bug){ System.out.print("gate "+in1.getIndex()+" "+in2.getIndex()
+                 +" "+out1.getIndex()+ " :");}
       boolean changed = false; 
       
       int v1 = in1.getDrivenV(); // effective voltage on pin1

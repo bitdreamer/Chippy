@@ -139,4 +139,6 @@ public class Pin extends Connectic
          g.drawLine( xab, yab, xab+1, yab-2 );
 		}
 	}
+	
+	public int getIndex() { return index; }
 }

@@ -46,10 +46,10 @@ public class Chip74175 extends Chip implements Serializable
       {
          //int v = pinArray[11].getDrivenV();
          Pin pk = pinArray[clockPin];
-         if (pk.needs) // needs will be true if value driving clock has changed
+         if (pk.getNeeds()) // needs will be true if value driving clock has changed
          {
-            Hole drv = (Hole)(pk.buddy);
-            if ( drv.voltage>=3 && drv.lastVolt<3 ) // detects pos edge trigger
+            Hole drv = (Hole)(pk.getBuddy());
+            if ( drv.getVoltage()>=3 && drv.getLastVolt()<3 ) // detects pos edge trigger
             {
                for ( int j=0; j<4; j++ )
                {

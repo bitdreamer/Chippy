@@ -174,4 +174,5 @@ public class Connectic implements Serializable
    public void setNeeds( boolean tf ) { needs = tf; }
    public boolean getNeeds() { return needs; }
    public boolean getIdrive() { return idrive; }
+   public int getLastVolt() { return lastVolt; }
 }
