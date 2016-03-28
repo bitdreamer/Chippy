@@ -12,15 +12,13 @@
 package Chippy;
 
 import java.awt.*;
-
-import javax.swing.*;
-
-import plugs.*;
-
 import java.awt.event.*;
+import javax.swing.*;
 import java.awt.Graphics;
 import java.util.*;
-import java.io.*;
+//import java.io.*;
+
+import plugs.*;
 
 public class Chippy extends JFrame implements ActionListener 
 {
@@ -30,19 +28,11 @@ public class Chippy extends JFrame implements ActionListener
    private boolean itemSelected = false;// does a piece in the circuit window
                                       // have focus?
    private Piece selectedPiece;           // piece in focus, null=none
-//	final JFileChooser fc;
 		  
    Controller boss;
 
-	// GUI elements
-	//private JButton saveButton;	   // saves the objects displayed on the circuit
-	//private JButton loadButton;	   // loads the saved objects from a file
-  // private JComboBox switches;   // selects which switch the user wants
-	//private JButton aboutButton;     // about the program
-   private JButton chargeOne;       // call charge just once
-	   
-    private BufferedReader bReader;
-    private PrintWriter pWriter;
+   // private BufferedReader bReader;
+    //private PrintWriter pWriter;
     
     protected Doer theDoer;
 	
@@ -71,37 +61,12 @@ public class Chippy extends JFrame implements ActionListener
 		Container container = getContentPane();
 			       
 		cktList = new LinkedList<Piece>();
-	/*	
-		// create a file chooser for saving and loading files
-		fc = new JFileChooser();
-		ChippyFilter cf = new ChippyFilter(); 
-		fc.setFileFilter(cf);
-	*/	
-		//int xq86oo4 = 354; // junk statment
 
         //create panel to build circuit
 	 	controlies = new JPanel();
 	 	controlies.setPreferredSize( new Dimension(800,200) );
-	   //controlies.setBackground( new Color(200,230,240) );
 	 	controlies.setBackground( Color.white);
-	 	// This panel is actually taking over the whole screen.  We just
-	 	// want it to be the place where the buttons are.  Fix it.
 
-		//aboutButton   = new JButton   ("About");
-		chargeOne     = new JButton   ("charge 1");
-
-	//	controlies.add( aboutButton );
-      controlies.add( chargeOne );
-	
-		container.add( controlies );
-		
-		//=====================================================================
-	   // add listeners to buttons and ComboBoxes so they'll do something
-      // fix: this list will disappear when all are done like Chip.
-		//=====================================================================
-	//	aboutButton.addActionListener  ( this );
-      chargeOne.addActionListener    ( this );
-			            
 		setSize( 800,500 );	//size of frame
 		setLocation( 10,10 );
       setVisible( true );
@@ -226,12 +191,13 @@ public class Chippy extends JFrame implements ActionListener
    // actionPerformed.  dispatch for all the buttons
  	public void actionPerformed(ActionEvent e) 
 	{
+	/*
 		try 
 		{ 
 			if 
 			//(e.getSource() == aboutButton) { aboutBox();}
        //  else if 
-         (e.getSource() == chargeOne) { charge(); /*repo();*/ }
+         (e.getSource() == chargeOne) { charge(); / * repo(); * / }
 		  	repaint();
 		}
 		catch (Exception exc) 
@@ -239,6 +205,7 @@ public class Chippy extends JFrame implements ActionListener
 			JOptionPane.showMessageDialog (this,exc.toString(),"what did you do?!",
 						                      JOptionPane.ERROR_MESSAGE);
 		}
+		*/
 	}
 	
    // This is a hack to do some debugging

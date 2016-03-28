@@ -33,6 +33,7 @@ public class Controller extends JFrame
       add( new plugs.DoSave() );
       add( new plugs.DoLoad() );
       add( new plugs.DoAbout() );
+      add( new plugs.DoCharge() );
       
       setVisible(true);
    }
