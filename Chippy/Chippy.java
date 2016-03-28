@@ -3,7 +3,7 @@
 // This is the top file for Chippy, a TTL breadboard simulator.
 /*
  * Created 2005 in Software Engineering course (Barrett Koster)
- * @author2 - Susan Hwang, Samah Kattan, Emily, Samah, 
+ * @author2 - Susan Hwang, Samah Kattan, Emily Mitchell,  
 
  *
  *
