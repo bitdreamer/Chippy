@@ -38,7 +38,7 @@ public class Chippy extends JFrame implements ActionListener
 	//private JButton saveButton;	   // saves the objects displayed on the circuit
 	//private JButton loadButton;	   // loads the saved objects from a file
   // private JComboBox switches;   // selects which switch the user wants
-	private JButton aboutButton;     // about the program
+	//private JButton aboutButton;     // about the program
    private JButton chargeOne;       // call charge just once
 	   
     private BufferedReader bReader;
@@ -87,18 +87,10 @@ public class Chippy extends JFrame implements ActionListener
 	 	// This panel is actually taking over the whole screen.  We just
 	 	// want it to be the place where the buttons are.  Fix it.
 
-	//	saveButton 	  = makeButton("Save"); //new JButton   ("Save");
-	//	loadButton    = new JButton   ("Load");
-		aboutButton   = new JButton   ("About");
+		//aboutButton   = new JButton   ("About");
 		chargeOne     = new JButton   ("charge 1");
 
-      //fix - anything left below needs to be converted to the
-      // way we do Chip and Light, or boardButton and batteryButton.
-      // And then it will disappear from this section.
-	//	controlies.add( switches );
-	   //controlies.add( removeButton );
-	//   controlies.add( loadButton );
-		controlies.add( aboutButton );
+	//	controlies.add( aboutButton );
       controlies.add( chargeOne );
 	
 		container.add( controlies );
@@ -107,8 +99,7 @@ public class Chippy extends JFrame implements ActionListener
 	   // add listeners to buttons and ComboBoxes so they'll do something
       // fix: this list will disappear when all are done like Chip.
 		//=====================================================================
-//		loadButton.addActionListener   ( this );	
-		aboutButton.addActionListener  ( this );
+	//	aboutButton.addActionListener  ( this );
       chargeOne.addActionListener    ( this );
 			            
 		setSize( 800,500 );	//size of frame
@@ -236,20 +227,11 @@ public class Chippy extends JFrame implements ActionListener
  	public void actionPerformed(ActionEvent e) 
 	{
 		try 
-		{ /*
-		    if (e.getSource() == chips)         { makeChip(); }
-			else 
-			*/
-		//	if (e.getSource() == wires)         { makeWire(); }
-		//	else 
-		//	if (e.getSource() == switches) { makeSwitch(); }
-		//	else 
-		/*
-			if (e.getSource() == saveButton) {save();}
-			else if (e.getSource() == loadButton) {load();}
-			else */
-			if (e.getSource() == aboutButton) { aboutBox();}
-         else if (e.getSource() == chargeOne) { charge(); /*repo();*/ }
+		{ 
+			if 
+			//(e.getSource() == aboutButton) { aboutBox();}
+       //  else if 
+         (e.getSource() == chargeOne) { charge(); /*repo();*/ }
 		  	repaint();
 		}
 		catch (Exception exc) 
@@ -275,80 +257,6 @@ public class Chippy extends JFrame implements ActionListener
        c.report();
    }
 
-/*
-   // saves the circuit to a .chpy file (text).
-   // FIX so far I think the user must type the ".chpy".  
-   public void save()
-   {
-      int result = fc.showSaveDialog(this); 
-      
-      if (result == JFileChooser.APPROVE_OPTION)
-      {
-        File file = fc.getSelectedFile();
-        try
-        {
-           FileWriter fw = new FileWriter ( file );
-          // ObjectOutputStream oos = new ObjectOutputStream ( fos );
-           
-           Iterator i = cktList.iterator();
-           while ( i.hasNext() )
-           {
-              Piece p = ( Piece ) i.next();
-              fw.write ( p.saveMe() );
-           }
-           fw.flush();
-           fw.close();
-        }
-        catch ( Exception e )
-        {
-           System.out.println( e.toString() );
-        }
-      }
-   }
-   
-	// this is for loading from a text file.
-	// It asks the user to pick a file, then loads it with 
-	// commands to record all of the Pieces.
-	public void load()
-	{
-	   try
-	   {
-         int result = fc.showOpenDialog(this); // this is where the user picks the file
-      
-         if (result == JFileChooser.APPROVE_OPTION)
-         {
-            File file = fc.getSelectedFile(); // ok, so what was that file?
-            FileReader fr = new FileReader(file);
-            BufferedReader bfr = new BufferedReader( fr );
-            
-            if ( bfr != null )
-            {
-                String line;
-                boolean done=false;
-                while (!done)
-                {
-                    line = null;
-                    try{ line = bfr.readLine(); }
-                    catch (EOFException e) { done = true; } // doesn't work
-                    catch (IOException e) 
-                    { System.out.println("Cmd.cmd: read error="+e); done = true; }
-                    
-                    // detect end of file (this one works)
-                    if ( line ==null ) { done = true; }
-                    
-                    if ( !done )
-                    {
-                        theDoer.doCom( line );
-                    }
-                }
-            }
-         }
-      }
-	   catch (Exception e ) { System.out.println( e.toString() );}
-	   countBoards();
-	}
-	
-*/
    // findAHole. returns Hole at given xy
    // how: goes through list of components, asks each if it has a hole at xy
 	public Hole findAHole (int x, int y)
@@ -432,7 +340,7 @@ public class Chippy extends JFrame implements ActionListener
 		g.drawRect(50, 60, 50, 50);
 		g.drawString("TRASH", 52, 75);
 	}
-   
+  /* 
    // aboutBox.  puts up a message about the program
    public void aboutBox()
    {
@@ -443,7 +351,7 @@ public class Chippy extends JFrame implements ActionListener
                        +"\n with professor Barrett Koster"
                                             );
    }
-   
+   */
 	//-----------------------------------------------------------------
 	// draws all the components on the component list
 	//-----------------------------------------------------------------
