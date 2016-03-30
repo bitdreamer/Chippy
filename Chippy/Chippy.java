@@ -16,7 +16,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.Graphics;
 import java.util.*;
-//import java.io.*;
 
 import plugs.*;
 
@@ -30,14 +29,11 @@ public class Chippy extends JFrame implements ActionListener
    private Piece selectedPiece;           // piece in focus, null=none
 		  
    Controller boss;
-
-   // private BufferedReader bReader;
-    //private PrintWriter pWriter;
     
-    protected Doer theDoer;
+   protected Doer theDoer;
 	
-	private JPanel controlies;
-	private Insets inset;   			// this is the unusable area of the frame
+   private JPanel controlies;
+   private Insets inset;   			// this is the unusable area of the frame
   
    public static void main(String args[]) 
    {
@@ -169,7 +165,7 @@ public class Chippy extends JFrame implements ActionListener
          {}
       }
    }
-
+/*
    // return new button with label s1, add to controlies and add listener
    private JButton makeButton( String s1 )
    {
@@ -186,7 +182,7 @@ public class Chippy extends JFrame implements ActionListener
       jcb.addActionListener(this);
       return jcb;
    }
-  
+ */ 
     @Override
    // actionPerformed.  dispatch for all the buttons
  	public void actionPerformed(ActionEvent e) 
