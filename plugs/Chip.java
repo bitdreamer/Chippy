@@ -71,7 +71,7 @@ public abstract class Chip extends RectangularPiece implements Serializable
    // make a generic chip, give it np1 number of legs
    public Chip( int np1 )
    {
-      System.out.println("Chip.Chip: entering");
+      //System.out.println("Chip.Chip: entering");
       xanchor = 160;
       yanchor = 250;
       height = 65;

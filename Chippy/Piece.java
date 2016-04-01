@@ -11,6 +11,7 @@ import java.util.LinkedList;
 
 public abstract class Piece implements Serializable
 {
+    boolean bug = true;
     protected String name; // what kind of piece it is
     protected int xanchor; // upper left of piece in pixels rel to big window
     protected int yanchor;
@@ -67,6 +68,8 @@ public abstract class Piece implements Serializable
 		xanchor = gridify(newX);
 		yanchor = gridify(newY);
       troll();
+      
+      if(bug){ System.out.println("Piece.move: xanchor="+xanchor+" yanchor="+yanchor);}
 	}
    
    // grab.  true iff the given xy is near the grab point for this piece
@@ -74,6 +77,8 @@ public abstract class Piece implements Serializable
    public boolean grab( int x, int y )
    {
        boolean ret = false;
+       
+       if (bug) { System.out.println("Piece.grab: xanchor="+xanchor+" yanchor="+yanchor); }
        
 		int tolerance = 5;
 	   if (    (x >= xanchor - tolerance)

@@ -4,9 +4,6 @@
 /*
  * Created 2005 in Software Engineering course (Barrett Koster)
  * @author2 - Susan Hwang, Samah Kattan, Emily Mitchell,  
-
- *
- *
 */
 
 package Chippy;
@@ -70,8 +67,8 @@ public class Chippy extends JFrame implements ActionListener
       inset = getInsets();
 				      
       //restrict component to circuit panel
-		controlies.
-      addMouseListener( 
+	//	controlies.
+		      addMouseListener( 
       new MouseAdapter()
 		{
          // mouseClicked does nothing so far
@@ -107,13 +104,15 @@ public class Chippy extends JFrame implements ActionListener
 					unSelectAll();  // probably unnecessary
 					itemSelected = false;
 					selectedPiece = null;
+					
 				}
             charge100();
             repaint();
 			}
       });
 		
-		controlies.addMouseMotionListener(
+		controlies.
+		addMouseMotionListener(
 	   new MouseMotionAdapter() 
 		{
          @Override
@@ -136,6 +135,7 @@ public class Chippy extends JFrame implements ActionListener
    // selectedPiece = p, p.selected=true, itemSelected=true
    public void doMousePressed( int x, int y )
    {
+      if (bug) { System.out.println(" mouse pressed "+x+" "+y); }
       Iterator <Piece> i = cktList.iterator();
       while ( i.hasNext() )
       {
@@ -145,6 +145,7 @@ public class Chippy extends JFrame implements ActionListener
             p.setSelected( true );
             itemSelected = true;
             selectedPiece = p;
+            if (bug) { System.out.println(" piece found "+p); }
          }
          if ( p.press(x,y) ) // Also try to press this piece.
          {}
@@ -165,43 +166,11 @@ public class Chippy extends JFrame implements ActionListener
          {}
       }
    }
-/*
-   // return new button with label s1, add to controlies and add listener
-   private JButton makeButton( String s1 )
-   {
-      JButton jb = new JButton(s1);
-      controlies.add(jb);
-      jb.addActionListener(this);
-      return jb;
-   }
-   // same thing for combo boxes
-   final public JComboBox makeComboBox( String[] choices )
-   {
-      JComboBox jcb = new JComboBox( choices );
-      controlies.add(jcb);
-      jcb.addActionListener(this);
-      return jcb;
-   }
- */ 
+ 
     @Override
    // actionPerformed.  dispatch for all the buttons
  	public void actionPerformed(ActionEvent e) 
 	{
-	/*
-		try 
-		{ 
-			if 
-			//(e.getSource() == aboutButton) { aboutBox();}
-       //  else if 
-         (e.getSource() == chargeOne) { charge(); / * repo(); * / }
-		  	repaint();
-		}
-		catch (Exception exc) 
-		{		
-			JOptionPane.showMessageDialog (this,exc.toString(),"what did you do?!",
-						                      JOptionPane.ERROR_MESSAGE);
-		}
-		*/
 	}
 	
    // This is a hack to do some debugging
@@ -303,18 +272,7 @@ public class Chippy extends JFrame implements ActionListener
 		g.drawRect(50, 60, 50, 50);
 		g.drawString("TRASH", 52, 75);
 	}
-  /* 
-   // aboutBox.  puts up a message about the program
-   public void aboutBox()
-   {
-       JOptionPane.showMessageDialog(null,
-                       "This program was written by Susan Hwang & " +
-					        "Emily Mitchell \n as part of a Software " +
-                       "Engineering class at Meredith College"
-                       +"\n with professor Barrett Koster"
-                                            );
-   }
-   */
+
 	//-----------------------------------------------------------------
 	// draws all the components on the component list
 	//-----------------------------------------------------------------
@@ -349,8 +307,8 @@ public class Chippy extends JFrame implements ActionListener
 		}
 	}
    
+   // access
    public LinkedList <Piece> getCktList() { return cktList; }
-   
    public void addToCktList( Piece p ) { cktList.add(p); repaint(); }
    public void clearCktList() { cktList = new LinkedList <Piece> (); }
    public int incNumBoards() { numBoards++; return numBoards; }
