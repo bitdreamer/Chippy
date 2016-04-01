@@ -86,25 +86,22 @@ public class Chippy extends JFrame //implements ActionListener
    }
 
 	// call charge() on all pieces in cktList
-   // fix: make this return true only if something changes
    public boolean charge()
-	{
+   {
       //if (bug) { System.out.println("Chippy.charge: entering ...");}
       boolean somethingChanged = false;
-		Iterator <Piece> i = cktList.iterator();
-	   while (i.hasNext())
-		{
+      Iterator <Piece> i = cktList.iterator();
+	  while (i.hasNext())
+      {
 			Piece p = i.next();
 			//if (bug) { System.out.println("   about to call charge on piece "+p.name ); }
 			boolean ch = p.charge();
 			somethingChanged = somethingChanged || ch;
-		}
-	   
-	   // report();
+      }
 	   
 	   return somethingChanged;
 	}
-
+/*
    // tell whatever you can about the circuit
    public void report()
    {
@@ -115,7 +112,7 @@ public class Chippy extends JFrame //implements ActionListener
 			p.report();
 		}
    }
-
+*/
 	// unselect all parts
    public void unSelectAll()
 	{

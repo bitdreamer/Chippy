@@ -16,11 +16,7 @@ import java.util.*;
 public class Wire extends Piece implements Serializable
 {
    static boolean bug = false;
-   //static LinkedList <colorChoice> colors;
-
-	//private String color; // printable name for this color
-	private Pin endpoint1, endpoint2; 
-	//private int wireLength = 40;
+   private Pin endpoint1, endpoint2; 
 	private Color c; // wire is this color
 	int pinSelected = 0;
 

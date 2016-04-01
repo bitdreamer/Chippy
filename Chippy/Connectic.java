@@ -1,7 +1,7 @@
 // Connectic.java
 // Barry 2010
 // This class is the super class for Pin and Hole, which
-// move alike in certian ways we group here.
+// behave alike in certain ways we group here.
 
 package Chippy;
 
@@ -49,7 +49,7 @@ public class Connectic implements Serializable
     To connect, set myPin and myHole to each other and again, needs=true.
     
     charging being revised .... 
-    OK, now we need to describe how the voltage proppagation works.  
+    OK, now we need to describe how the voltage propagation works.  
     At any instant in time, all Pins and Holes will have a voltage
     and a value of needs.  The charge() call from to top will tell
     each piece to evaluate it's state and if anything 'needs' attention,

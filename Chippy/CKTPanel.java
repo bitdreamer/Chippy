@@ -17,9 +17,7 @@ public class CKTPanel extends JPanel implements MouseListener, MouseMotionListen
    Chippy theChippy; // pointer to the main program
    int gz=10;  // grid size
    LinkedList <Piece> cktList;  // all the parts
-   //private boolean itemSelected = false;// does a piece in the circuit window
-   //                                   // have focus?
-   private Piece selectedPiece = null;           // piece in focus, null=none
+   private Piece selectedPiece = null;// piece in focus, null=none
 
    
    public CKTPanel( Chippy ch)
@@ -51,7 +49,7 @@ public class CKTPanel extends JPanel implements MouseListener, MouseMotionListen
             p.setSelected( true );
             //itemSelected = true;
             selectedPiece = p;
-            if (bug) { System.out.println(" piece found "+p); }
+            //if (bug) { System.out.println(" piece found "+p); }
          }
          if ( p.press(x,y) ) // Also try to press this piece.
          {}
@@ -85,6 +83,18 @@ public class CKTPanel extends JPanel implements MouseListener, MouseMotionListen
    public void mouseExited  ( MouseEvent m ) {}
    
    public void mouseMoved( MouseEvent m ) {}
+   
+      // tell whatever you can about the circuit
+   public void report()
+   {
+		Iterator <Piece> i = cktList.iterator();
+	   while (i.hasNext())
+		{
+			Piece p =  i.next();
+			p.report();
+		}
+   }
+
    
    public void paint( Graphics g )
    {

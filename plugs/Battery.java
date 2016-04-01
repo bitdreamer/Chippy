@@ -33,7 +33,7 @@ public class Battery extends RectangularPiece implements Serializable
       
       connectix.add(groundHole);
 		posHole = new Hole(this, 2, 10);
-		posHole.setVoltage(5); 			//postive voltage
+		posHole.setVoltage(5); 			//positive voltage
       posHole.setIdrive(true);
       posHole.setNeeds(false); //posHole.needs = false;
       
