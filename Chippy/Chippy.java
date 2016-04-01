@@ -16,7 +16,7 @@ import java.util.*;
 
 import plugs.*;
 
-public class Chippy extends JFrame implements ActionListener 
+public class Chippy extends JFrame //implements ActionListener 
 {
    boolean bug = true;
    private int numBoards = 0;             // number of boards - for now
@@ -31,7 +31,7 @@ public class Chippy extends JFrame implements ActionListener
    protected Doer theDoer;
 	
    private JPanel controlies;
-   private Insets inset;   			// this is the unusable area of the frame
+   //private Insets inset;   			// this is the unusable area of the frame
   
    public static void main(String args[]) 
    {
@@ -44,154 +44,24 @@ public class Chippy extends JFrame implements ActionListener
       super("Chippy");
       setDefaultCloseOperation(EXIT_ON_CLOSE);
       
-      theCP = new CKTPanel( this );
-      add( theCP );
-
       // inform some classes where the main program is 		
       plugs.Put.setTheChippy(this);
       Connectic.setTheChippy(this);
       Wire.setTheChippy(this);
+      
       theDoer = new Doer(this);
       
+      theCP = new CKTPanel( this );
+      add( theCP );
+      cktList = theCP.getCktList();
+
       boss = new Controller( this );
-		
-		Container container = getContentPane();
-			       
-		cktList = new LinkedList<Piece>();
 
-        //create panel to build circuit
-	 	controlies = new JPanel();
-	 	controlies.setPreferredSize( new Dimension(800,200) );
-	 	controlies.setBackground( Color.green);
+      setSize( 800,500 );	//size of frame
+	  setLocation( 10,10 );
+      setVisible( true );		
+   } // end of Chippy constructor
 
-		setSize( 800,500 );	//size of frame
-		setLocation( 10,10 );
-      setVisible( true );
-      
-      inset = getInsets();
-				      
-      //restrict component to circuit panel
-	//	controlies.
-		      addMouseListener( 
-      new MouseAdapter()
-		{
-         // mouseClicked does nothing so far
-         @Override
-      	public void mouseClicked( MouseEvent mouse )
-			{ 
-				int x, y; 
-				x = mouse.getX(); 
-				y = mouse.getY();
-            //System.out.println("mouse click at x="+x+" y="+y);
-		 	}
-
-         // select piece if there is one near
-         @Override
-		 	public void mousePressed( MouseEvent e ) 
-		 	{ int curX, curY;
-		   	curX = e.getX() + inset.left;
-				curY = e.getY() + inset.top;
-            doMousePressed( curX, curY );
-	    	}	
-
-         @Override
-		 	public void mouseReleased(MouseEvent e) 
-		 	{   int newX, newY;
-		 		newX = e.getX() + inset.left;
-				newY = e.getY() + inset.top;
-				trash(newX, newY, selectedPiece);
-
-            if ( itemSelected )
-				{
-				   selectedPiece.move( newX, newY );
-               selectedPiece.dropIn();
-					unSelectAll();  // probably unnecessary
-					itemSelected = false;
-					selectedPiece = null;
-					
-				}
-            charge100();
-            repaint();
-			}
-      });
-		
-		controlies.
-		addMouseMotionListener(
-	   new MouseMotionAdapter() 
-		{
-         @Override
-			public void mouseDragged(MouseEvent e) 
-			{   
-                int newX, newY;
-		   	    newX = e.getX() + inset.left;
-			    newY = e.getY() + inset.top;
-			  
-			   if ( itemSelected ) 
-				{
-				   selectedPiece.move( newX, newY ); 
-		   	}
-   			repaint();
-			}});
-	} // end of Chippy constructor
-
-   // Mouse was pressed at these coords, big window coords.
-   // If there is a piece p close to the mouse coords ...
-   // selectedPiece = p, p.selected=true, itemSelected=true
-   public void doMousePressed( int x, int y )
-   {
-      if (bug) { System.out.println(" mouse pressed "+x+" "+y); }
-      Iterator <Piece> i = cktList.iterator();
-      while ( i.hasNext() )
-      {
-         Piece p = i.next();
-         if ( p.grab( x, y ))
-         {
-            p.setSelected( true );
-            itemSelected = true;
-            selectedPiece = p;
-            if (bug) { System.out.println(" piece found "+p); }
-         }
-         if ( p.press(x,y) ) // Also try to press this piece.
-         {}
-      }
-   }
-   
-   // Mouse was released at these coords, big window coords.
-   // If there is a piece p close to the mouse coords ...
-   // selectedPiece = p, p.selected=true, itemSelected=true
-   public void doMouseReleased( int x, int y )
-   {
-      Iterator <Piece> i = cktList.iterator();
-      while ( i.hasNext() )
-      {
-         Piece p = i.next();
-         // grabby stuff was handled before, could be moved to here 
-         if ( p.release() ) // Also try to press this piece.
-         {}
-      }
-   }
- 
-    @Override
-   // actionPerformed.  dispatch for all the buttons
- 	public void actionPerformed(ActionEvent e) 
-	{
-	}
-	
-   // This is a hack to do some debugging
-   public void repo()
-   {
-       // set variable c to be the ChipFlop
-       Chip74377 c=null;
-       Iterator i = cktList.iterator();
-       while ( i.hasNext() )
-       {
-           Object o1 = i.next();
-           if ( o1 instanceof Chip74377 ) { c = (Chip74377) o1; }
-       }
-       
-       // 
-       c.report();
-   }
 
    // findAHole. returns Hole at given xy
    // how: goes through list of components, asks each if it has a hole at xy
@@ -277,25 +147,7 @@ public class Chippy extends JFrame implements ActionListener
 		g.drawString("TRASH", 52, 75);
 	}
 
-	//-----------------------------------------------------------------
-	// draws all the components on the component list
-	//-----------------------------------------------------------------
-   @Override
-   public void paint (Graphics g) 
-   {
-	 	super.paint(g);
-		drawTrash(g);
-      
-      g.setColor( Color.black );
-      // g.fillRect( curX, curY, 3, 3 );
-	        
-      Iterator <Piece>  i = cktList.iterator();
-	  while (i.hasNext()) 
-	  {
-         Piece p = i.next();
-         p.draw(g);
-	  }
-   }	 
+	 
    
    	// count the boards in the list and reset numBoards var
 	public void countBoards()

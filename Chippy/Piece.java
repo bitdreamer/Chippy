@@ -11,7 +11,7 @@ import java.util.LinkedList;
 
 public abstract class Piece implements Serializable
 {
-    boolean bug = true;
+    boolean bug = false;
     protected String name; // what kind of piece it is
     protected int xanchor; // upper left of piece in pixels rel to big window
     protected int yanchor;
@@ -19,12 +19,12 @@ public abstract class Piece implements Serializable
     protected int width;   //width of piece in pixels
     protected LinkedList <Connectic> connectix; // list of pins or holes that go with this piece.
     protected boolean isSelected = false;   //does this piece have focus?
-    protected int gridSize = 10; // what is this for?
+    static int gridSize; // piece should scale with gridSize
 
     public Piece()
     {
-      name = "thingy";
-		xanchor = 200;
+       name = "thingy";
+	   xanchor = 200;
 		yanchor = 100;
 		height = 20;
 		width = 20;
@@ -54,12 +54,10 @@ public abstract class Piece implements Serializable
       }
    }
 
-   // adjust an integer to grid
-	final public int gridify(int i)
+   // adjust a coordinate to grid
+	final public int gridify(int x)
 	{
-	  	//float temp = i/gridSize;
-	  	//return Math.round(temp)* gridSize;
-      return (i/gridSize)*gridSize;
+      return ((x+gridSize/2)/gridSize)*gridSize;
 	}
 	
    // move.  set coordintes to newX, newY .... adjusted to grid
