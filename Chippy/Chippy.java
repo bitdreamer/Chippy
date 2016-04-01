@@ -25,7 +25,8 @@ public class Chippy extends JFrame implements ActionListener
                                       // have focus?
    private Piece selectedPiece;           // piece in focus, null=none
 		  
-   Controller boss;
+   Controller boss; // has all the buttons to add components to the circuit
+   CKTPanel theCP; // where all of the parts go, the circuit
     
    protected Doer theDoer;
 	
@@ -42,6 +43,9 @@ public class Chippy extends JFrame implements ActionListener
    {
       super("Chippy");
       setDefaultCloseOperation(EXIT_ON_CLOSE);
+      
+      theCP = new CKTPanel( this );
+      add( theCP );
 
       // inform some classes where the main program is 		
       plugs.Put.setTheChippy(this);
@@ -58,7 +62,7 @@ public class Chippy extends JFrame implements ActionListener
         //create panel to build circuit
 	 	controlies = new JPanel();
 	 	controlies.setPreferredSize( new Dimension(800,200) );
-	 	controlies.setBackground( Color.white);
+	 	controlies.setBackground( Color.green);
 
 		setSize( 800,500 );	//size of frame
 		setLocation( 10,10 );
