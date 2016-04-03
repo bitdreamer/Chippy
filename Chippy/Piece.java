@@ -187,4 +187,5 @@ public abstract class Piece implements Serializable
 		Chippy ch = new Chippy();
   	}
 
+   static public int getGridSize() {return gridSize;}
 } 

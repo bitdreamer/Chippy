@@ -3,7 +3,7 @@ package Chippy;
 //04/04/05
 
 // This Piece represents a toggle switch.  There are three pins aligned
-// vertically.  Eithe the top two or the bottom two are connected.
+// vertically.  Either the top two or the bottom two are connected.
 // pressing on the switch changes the state.  Releasing it does not.
 
 import java.awt.*;
@@ -19,8 +19,8 @@ public class ToggleSwitch extends RectangularPiece implements Serializable
 	protected Pin bottomPin;  	//bottom pin
 	//private int voltage = 99;
 
-  	public ToggleSwitch(int x, int y)
-  	{
+   public ToggleSwitch(int x, int y)
+   {
   		super(x,y);
     	color = Color.yellow;
     	height = 25; // switch is a vertical rectangle covering 3 holes.
@@ -70,21 +70,23 @@ public class ToggleSwitch extends RectangularPiece implements Serializable
 
    @Override
    // charge.
-	public boolean charge()
-	{
+   public boolean charge()
+   {
+      boolean changed = false;
+      // report();
       if ( up ) // top and center are a wire, bottom floats
       {
-         Wire.likeWire( topPin, centerPin );
-         bottomPin.setIdrive(false); bottomPin.setVoltage(3);
+         changed |= Wire.likeWire( topPin, centerPin );
+         bottomPin.setIdrive(false); //bottomPin.setVoltage(3);
       }
       else // bottom and center are a wire, top floats
       {
-         Wire.likeWire( bottomPin, centerPin );
+         changed |= Wire.likeWire( bottomPin, centerPin );
          topPin.setIdrive(false); topPin.setVoltage(3);
       }
-      return true;
+      return changed;
 	}
-   /*
+   
    public void report()
    {
       System.out.println("ToggleSwitch.report - from top to bottom ...");
@@ -92,29 +94,8 @@ public class ToggleSwitch extends RectangularPiece implements Serializable
       centerPin.report();
       bottomPin.report();
    }
-*/
-/*
-   //--------------------------------------------------------------------------
-   // adjust an integer to grid
-	//--------------------------------------------------------------------------
-  // Whoever invented this translate stuff ... I really should have corrected.
-   // fix - this whole move thing needs help.
-  	public void move(int newX, int newY)
-  	{
-  	 	super.move(newX, newY);
-		topPin.setX(gridify(newX));
-		topPin.setY(gridify(newY));
-		topPin.findAHole();
-		
-		centerPin.setX(gridify(newX));
-		centerPin.setY(gridify(newY+10));
-		centerPin.findAHole();
- 
-      bottomPin.setX(gridify(newX));
-		bottomPin.setY(gridify(newY+20));
-		bottomPin.findAHole();
-  	}
-*/
+
+
   
    // fix- the colored rectangle on this is sideways or something.
   	public void draw(Graphics g )

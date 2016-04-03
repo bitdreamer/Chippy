@@ -84,6 +84,7 @@ public class Wire extends Piece implements Serializable
 
    // This method is done as a static so that we can 
    // use it to make a button look like a wire when it is pressed.
+   // Returns true if change occurs.
    public static boolean likeWire( Pin endpoint1, Pin endpoint2 )
    {
       if (bug) { System.out.println("Wire.likeWire: entering ..."); }

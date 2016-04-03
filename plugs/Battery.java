@@ -21,19 +21,19 @@ public class Battery extends RectangularPiece implements Serializable
 	public boolean charge()
 	{ return false; }
   
-	public Battery() 
-	{
+   public Battery() 
+   {
       xanchor = 78; yanchor = 120;
       width = 40; height = 20;
 		   
-		groundHole = new Hole(this,2,20);
-		groundHole.setVoltage(0);  	//ground
+	  groundHole = new Hole(this,2,20);
+      groundHole.setVoltage(0);  	//ground
       groundHole.setIdrive(true);
       groundHole.setNeeds(false);//groundHole.needs = false;
-      
       connectix.add(groundHole);
-		posHole = new Hole(this, 2, 10);
-		posHole.setVoltage(5); 			//positive voltage
+      
+	  posHole = new Hole(this, 2, 10);
+	  posHole.setVoltage(5); 			//positive voltage
       posHole.setIdrive(true);
       posHole.setNeeds(false); //posHole.needs = false;
       

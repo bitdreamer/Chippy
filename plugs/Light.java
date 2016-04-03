@@ -46,7 +46,7 @@ public class Light extends Piece implements Serializable
 
    public Light( Color nooc )
    {
-      width = height = gridSize = 10;
+      width = height = getGridSize(); // gridSize = 10;
       c = nooc;
       xanchor = 100; yanchor = 100;
 		pin1 = new Pin(this,0,0); // Pin(x1,y1,"1",this);

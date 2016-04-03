@@ -52,7 +52,7 @@ public class CKTPanel extends JPanel implements MouseListener, MouseMotionListen
             //if (bug) { System.out.println(" piece found "+p); }
          }
          if ( p.press(x,y) ) // Also try to press this piece.
-         {}
+         { theChippy.charge100(); }
       }
       repaint();
    }
