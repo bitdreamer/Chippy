@@ -46,7 +46,7 @@ public class Light extends Piece implements Serializable
 
    public Light( Color nooc )
    {
-      width = height = (int)(1.5*getGridSize()); // gridSize = 10;
+      width = height = (int)(1.0*getGridSize()); // gridSize = 10;
       c = nooc;
       xanchor = gridify(100); yanchor = gridify(100);
 		pin1 = new Pin(this,0,0); // Pin(x1,y1,"1",this);
@@ -86,21 +86,14 @@ public class Light extends Piece implements Serializable
 		else
 		{g.setColor(c.darker());}
 		
-		g.fillOval( getX(), getY()-gridSize/2, width, height );
+		g.fillOval( getX(), getY(), width, height );
 		
 		if (lit)
 		{
 		g.setColor( Color.white );
 		g.fillOval( getX()+2, getY()+4,4,4 );
 		}
-		
-		/*
-		if (getSelected())
-		{
-			g.setColor(Color.black);
-			g.drawOval(getX(), getY()+2, width, height);
-		}
-		*/
+
 		pin1.draw(g);
 		pin2.draw(g);
 		

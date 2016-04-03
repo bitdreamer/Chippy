@@ -19,7 +19,7 @@ public class Controller extends JFrame
       setTitle("Controller");
       
       setSize(300,600);
-      setLocation( new Point(850,60) );
+      setLocation( new Point(930,60) );
       
       setLayout( new FlowLayout() );
       

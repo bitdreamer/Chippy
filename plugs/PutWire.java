@@ -11,7 +11,7 @@ import java.util.*;
 
 public class PutWire extends Put
 {
-   JComboBox <Chippy.Wire> cb; 
+   JComboBox <plugs.Wire> cb; 
    
    // allowable colors of wires.  Note: must match code in made wire below
    private static String[] wireNames =   {"Choose a Wire", "black", "red"
@@ -25,16 +25,16 @@ public class PutWire extends Put
    }
    
    // return a Wire of this color
-   public Chippy.Wire makeWire( String colorName )
+   public plugs.Wire makeWire( String colorName )
    {
-      Chippy.Wire w=null;
+      plugs.Wire w=null;
       
-      if       ( colorName.equals("black" ) ) { w = new Chippy.Wire( 200, 100, Color.black  ); }
-      else  if ( colorName.equals("red"   ) ) { w = new Chippy.Wire( 220, 100, Color.red    ); }
-      else  if ( colorName.equals("yellow") ) { w = new Chippy.Wire( 240, 100, Color.yellow ); }
-      else  if ( colorName.equals("green" ) ) { w = new Chippy.Wire( 260, 100, Color.green  ); }
-      else  if ( colorName.equals("blue"  ) ) { w = new Chippy.Wire( 280, 100, Color.blue   ); }
-      else                                    { w = new Chippy.Wire( 300,100, Color.pink ); }
+      if       ( colorName.equals("black" ) ) { w = new plugs.Wire( 200, 20, Color.black  ); }
+      else  if ( colorName.equals("red"   ) ) { w = new plugs.Wire( 220, 20, Color.red    ); }
+      else  if ( colorName.equals("yellow") ) { w = new plugs.Wire( 240, 20, Color.yellow ); }
+      else  if ( colorName.equals("green" ) ) { w = new plugs.Wire( 260, 20, Color.green  ); }
+      else  if ( colorName.equals("blue"  ) ) { w = new plugs.Wire( 280, 20, Color.blue   ); }
+      else                                    { w = new plugs.Wire( 300, 20, Color.pink ); }
       
       return w;
    }
@@ -49,7 +49,7 @@ public class PutWire extends Put
       {
             String colorName = (String) (cb.getSelectedItem());
             cb.setSelectedIndex(0);
-            Chippy.Wire w = makeWire( colorName);
+            plugs.Wire w = makeWire( colorName);
             theChippy.addToCktList(w); // also does repaint
       }
    }	

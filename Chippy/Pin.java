@@ -22,8 +22,8 @@ public class Pin extends Connectic
    {
       super( p, xr, yr );
       //System.out.println("Pin.Pin: xr="+xr+" yr="+yr);
-      height = 5;
-      width = 5;
+      
+      height = width = CKTPanel.gz/2;
       c = Color.black;
    }
    
@@ -33,9 +33,8 @@ public class Pin extends Connectic
    {
       super( p, xr, yr );
       //System.out.println("Pin.Pin: xr="+xr+" yr="+yr);
-      height = 5;
-      width = 5;
-      c = Color.black;
+       height = width = CKTPanel.gz/2;
+     c = Color.black;
       index = index1;
    }
 
@@ -128,18 +127,19 @@ public class Pin extends Connectic
    //
    public void draw(Graphics g)
 	{
-	   int gzover2 = CKTPanel.gz / 2;
+	  // int gzover2 = CKTPanel.gz / 2;
 	
 		g.setColor(Color.black);
       // if ( idrive ) { g.setColor(Color.blue ); }
-		g.fillOval(xab-gzover2,yab-gzover2, gzover2, gzover2 );
+		g.fillOval(xab-width/2,yab-height/2, width, height );
 		
 		// debugging 
 		if ( theChippy.bug )
 		{
-   		if ( voltage >= 4 ) { g.setColor( Color.red ); }
-   		else                { g.setColor( Color.black ); }
-         g.drawLine( xab, yab, xab+1, yab-2 );
+	   		if ( voltage >= 4 ) { g.setColor( Color.red ); }
+	   		else                { g.setColor( Color.black ); }
+	         //g.drawLine( xab, yab, xab+1, yab-2 );
+	         g.fillRect(xab, yab, width/2, height/2 ); // shows high volt at pin (cheating)
 		}
 	}
 	

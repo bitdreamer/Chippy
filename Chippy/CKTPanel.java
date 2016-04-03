@@ -70,14 +70,24 @@ public class CKTPanel extends JPanel implements MouseListener, MouseMotionListen
    {
       if ( selectedPiece!=null )
       {
+         selectedPiece.release();
          int x = m.getX();  int y = m.getY();
          theChippy.trash( x, y, selectedPiece );
          selectedPiece.move( x, y );
          selectedPiece.dropIn();
          selectedPiece = null;
          theChippy.charge100(); // this needs a look
-         repaint();
       }
+      
+      Iterator <Piece> i = cktList.iterator(); 
+      while ( i.hasNext() )
+      {
+         Piece p = i.next();
+         p.release();
+      }
+
+      theChippy.charge100();
+      repaint();
    }
    public void mouseEntered ( MouseEvent m ) {}
    public void mouseExited  ( MouseEvent m ) {}

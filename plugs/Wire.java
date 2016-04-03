@@ -5,11 +5,15 @@
 
 // Wire represents a wire.  It has two pins on the ends and a color.
 
-package Chippy;
+package plugs;
 
 import java.awt.*;
 import java.io.*;
 import java.util.*;
+
+import Chippy.Chippy;
+import Chippy.Piece;
+import Chippy.Pin;
 
 //import javax.swing.JComboBox;
 
@@ -30,7 +34,7 @@ public class Wire extends Piece implements Serializable
       endpoint1 = new Pin(this,0,0); // Pin(x, y, "endpoint1", this);
       //pins.add(endpoint1);
       connectix.add(endpoint1);
-      endpoint2 = new Pin(this,0,50); // Pin(x, y+50, "endpoint2", this);
+      endpoint2 = new Pin(this,0,5*gridSize); // Pin(x, y+50, "endpoint2", this);
       //pins.add(endpoint2);
       connectix.add(endpoint2);
       
@@ -44,7 +48,7 @@ public class Wire extends Piece implements Serializable
       endpoint1 = new Pin(this,0,0); // Pin(x, y, "endpoint1", this);
       //pins.add(endpoint1);
       connectix.add(endpoint1);
-      endpoint2 = new Pin(this,x2-x1,y2-y1); // Pin(x, y+50, "endpoint2", this);
+      endpoint2 = new Pin(this,gridify(x2-x1),gridify(y2-y1)); // Pin(x, y+50, "endpoint2", this);
       //pins.add(endpoint2);
       connectix.add(endpoint2);
       
@@ -55,8 +59,8 @@ public class Wire extends Piece implements Serializable
 	public String saveMe()
 	{
       return "wire "+c.getRed()+" "+c.getGreen()+" "+c.getBlue()+" "
-            +endpoint1.xab+" "+endpoint1.yab + " "
-            +endpoint2.xab+" "+endpoint2.yab+"\n";
+            +endpoint1.getXab()+" "+endpoint1.getYab() + " "
+            +endpoint2.getXab()+" "+endpoint2.getYab()+"\n";
     
 	}
 	
@@ -202,16 +206,12 @@ public class Wire extends Piece implements Serializable
 		{
 			g2.setColor(c.darker());
 		}
-/*		if (voltage == 10)
-		{
-			g2.setColor(Color.orange);
-		}
-*/
+
 		g2.setStroke(new BasicStroke(3));
-	   g2.drawLine( endpoint1.getX()+2, endpoint1.getY()+2,
-                   endpoint2.getX()+2, endpoint2.getY()+2
+      g2.drawLine( endpoint1.getX(), endpoint1.getY(),
+                   endpoint2.getX(), endpoint2.getY()
                  ); 
-		endpoint1.draw(g);
+      endpoint1.draw(g);
 		endpoint2.draw(g);
 		g2.setStroke(new BasicStroke(1));
 		

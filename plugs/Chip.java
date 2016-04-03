@@ -160,7 +160,7 @@ public abstract class Chip extends RectangularPiece implements Serializable
       // draw the gray box part
       if (isSelected) {g.setColor(Color.lightGray.darker());}
 		else            {g.setColor(Color.lightGray         );}
-		g.fillRect((int)(xanchor-0.7*gridSize),(int)(yanchor-0.7*gridSize),width,height);
+		g.fillRect((int)(xanchor-0.43*gridSize),(int)(yanchor-0.4*gridSize),width,height);
 		
       // drag dot
       g.setColor( Color.white );

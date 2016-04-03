@@ -8,8 +8,11 @@ package Chippy;
 import java.awt.*;
 import java.io.*;
 
+import plugs.Wire;
+
 public class PushButtonSwitch extends RectangularPiece implements Serializable
 {
+    boolean bug = true;
 	private boolean closed = true;
 	private Color color;
 	protected Pin topPin; 	  //top pin
@@ -20,10 +23,10 @@ public class PushButtonSwitch extends RectangularPiece implements Serializable
   	{
   		super(x,y);
     	color = Color.yellow;
-    	height = 10; //setHeight(10);
-	 	width = 30; // setWidth(30);
+    	height = gridSize; //setHeight(10);
+	 	width = gridSize; // setWidth(30);
 	 	topPin = new Pin(this,0,0); // Pin(x,y,"topPin",this);
-	 	bottomPin = new Pin(this,0,10); // Pin(x,y+10,"bottomPin",this);
+	 	bottomPin = new Pin(this,0,gridSize); // Pin(x,y+10,"bottomPin",this);
       connectix.add(   topPin);
       connectix.add(bottomPin);
 
@@ -39,13 +42,14 @@ public class PushButtonSwitch extends RectangularPiece implements Serializable
    public boolean grab( int x, int y )
    {
        boolean ret = super.grab( x, y );
-       contains( x, y ); // if ( ret) { pressed = !pressed; }
+       //contains( x, y ); // if ( ret) { pressed = !pressed; }
        return ret;
    }
  
    // iff coords are on the switch, sw is closed (return true if changed)
    public boolean press( int x, int y) 
    {
+      //if (bug) { System.out.println("PBS.press: entering ..."); }
       boolean changed = false;
       
       int x1 = getX();
@@ -60,8 +64,9 @@ public class PushButtonSwitch extends RectangularPiece implements Serializable
    }
 
    // release the switch - note : we check to make sure the xy is on 
-   // the switch when we press it, lest we get all switches all the time.
-   // But we don't want to get it stuck, so we let it release when
+   // the switch when we *press* it, lest we press all switches all the time.
+   // But we don't want to get it stuck, in case the mouse drifts before
+   // release, so we let it release when
    // the mouse goes up without needing it to still be on xy.
    public boolean release() 
    {
@@ -105,13 +110,15 @@ public class PushButtonSwitch extends RectangularPiece implements Serializable
 	 	if (closed)
 		{
 			g.setColor(Color.darkGray);
-			g.fillOval(getX()+4, getY()+4, 8, 8);
+			g.fillOval(getX(), getY(), 5, gridSize);
 		}
+		/*
 		else
 		{
 			g.setColor(Color.darkGray);
-			g.drawOval(getX()+4, getY()+4, 8, 8);
+			g.drawOval(getX(), getY(), 5, gridSize);
 		}
+		*/
 		topPin.draw(g);
 		bottomPin.draw(g);
 	}

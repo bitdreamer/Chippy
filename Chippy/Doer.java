@@ -14,6 +14,7 @@ import plugs.Battery;
 import plugs.Board;
 import plugs.Chip;
 import plugs.Light;
+import plugs.Wire;
 
 public class Doer
 {

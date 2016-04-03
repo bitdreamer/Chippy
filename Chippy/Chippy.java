@@ -57,7 +57,7 @@ public class Chippy extends JFrame //implements ActionListener
 
       boss = new Controller( this );
 
-      setSize( 800,500 );	//size of frame
+      setSize( 900,900 );	//size of frame
 	  setLocation( 10,10 );
       setVisible( true );		
    } // end of Chippy constructor

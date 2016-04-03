@@ -9,6 +9,8 @@ package Chippy;
 import java.awt.*;
 import java.io.*;
 
+import plugs.Wire;
+
 public class ToggleSwitch extends RectangularPiece implements Serializable
 {
 	private boolean up = true; // true means top and center are connected,
@@ -23,11 +25,11 @@ public class ToggleSwitch extends RectangularPiece implements Serializable
    {
   		super(x,y);
     	color = Color.yellow;
-    	height = 25; // switch is a vertical rectangle covering 3 holes.
-	 	width = 10; 
+    	height = 3*gridSize; // switch is a vertical rectangle covering 3 holes.
+	 	width = gridSize; 
 	 	topPin = new Pin( this, 0, 0 ); // Pin(x,y,"topPin",this);
-		centerPin = new Pin( this, 0, 10 ); // Pin(x,y+10, "centerPin", this);
-	 	bottomPin = new Pin( this, 0, 20 ); // Pin(x,y+20,"bottomPin",this);
+		centerPin = new Pin( this, 0, gridSize ); // Pin(x,y+10, "centerPin", this);
+	 	bottomPin = new Pin( this, 0, 2*gridSize ); // Pin(x,y+20,"bottomPin",this);
       connectix.add(topPin);
       connectix.add(centerPin);
       connectix.add(bottomPin);
@@ -47,7 +49,7 @@ public class ToggleSwitch extends RectangularPiece implements Serializable
    public boolean grab( int x, int y )
    {
        boolean ret = super.grab( x, y );
-       contains( x, y ); // if ( ret) { up = !up; }
+       //contains( x, y ); // if ( ret) { up = !up; }
        return ret;
    }
 
@@ -105,17 +107,17 @@ public class ToggleSwitch extends RectangularPiece implements Serializable
 		if ( isSelected ) { g.setColor(color.darker()); }
 		else              { g.setColor(color); }
 
-	 	g.fillRect(xanchor,yanchor,width,height);
+	 	g.fillRect((int)(xanchor-0.1*gridSize),(int)(yanchor-0.4*gridSize),width,height);
 	 	if (up)
 		{
 			g.setColor(Color.darkGray);
-			g2.setStroke(new BasicStroke(2));
+			g2.setStroke(new BasicStroke(gridSize/5));
 			g.drawLine(topPin.getX()+5, topPin.getY()+2, centerPin.getX()+5, centerPin.getY()+2);
 		}
 		else
 		{
 			g.setColor(Color.darkGray);
-			g2.setStroke(new BasicStroke(2));
+			g2.setStroke(new BasicStroke(gridSize/5));
 			g.drawLine(bottomPin.getX()+5, bottomPin.getY()+2, centerPin.getX()+5, centerPin.getY()+2);
 		}
 		g2.setStroke(new BasicStroke(1));

@@ -49,12 +49,12 @@ public class Hole extends Connectic implements Serializable
 	
    public void draw(Graphics g )
 	{
-	   int gzover2 = CKTPanel.gz / 2;
+	   int wid = CKTPanel.gz/2;
 	
 		if (voltage == 2  )
 		{g.setColor(Color.orange);}
 		else
 		{g.setColor(Color.gray);}
-		g.drawOval( xab-gzover2, yab-gzover2, gzover2, gzover2 );
+		g.drawOval( xab-wid/2, yab-wid/2, wid, wid );
    }
 }

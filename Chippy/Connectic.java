@@ -175,4 +175,7 @@ public class Connectic implements Serializable
    public boolean getNeeds() { return needs; }
    public boolean getIdrive() { return idrive; }
    public int getLastVolt() { return lastVolt; }
+   
+   public int getXab() { return xab; }
+   public int getYab() { return yab;}
 }
