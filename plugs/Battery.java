@@ -23,16 +23,16 @@ public class Battery extends RectangularPiece implements Serializable
   
    public Battery() 
    {
-      xanchor = 78; yanchor = 120;
-      width = 40; height = 20;
+      xanchor = gridify(78); yanchor = gridify(120);
+      width = 3*gridSize; height = 3*gridSize;
 		   
-	  groundHole = new Hole(this,2,20);
+	  groundHole = new Hole(this,gridSize,2*gridSize);
       groundHole.setVoltage(0);  	//ground
       groundHole.setIdrive(true);
       groundHole.setNeeds(false);//groundHole.needs = false;
       connectix.add(groundHole);
       
-	  posHole = new Hole(this, 2, 10);
+	  posHole = new Hole(this, gridSize, gridSize);
 	  posHole.setVoltage(5); 			//positive voltage
       posHole.setIdrive(true);
       posHole.setNeeds(false); //posHole.needs = false;
@@ -67,14 +67,23 @@ public class Battery extends RectangularPiece implements Serializable
 		// clears the window to white
       g.setColor( new Color(150,150,150) );
       //g.fillRect(738, 180, 20, 40 );	// draws the actual battery
-      g.drawRect(xanchor,yanchor,20,40);
+      g.drawRect(xanchor,yanchor,width,height);
 		groundHole.draw(g);
 		posHole.draw(g);
+		
+	  
 	 		  
 		// draws plus and minus
 		g.setColor(Color.red);
+		g.drawString("+", xanchor+2*gridSize, yanchor+gridSize);
+		
+		g.setColor( Color.black );
+		g.drawString("-", xanchor+2*gridSize, yanchor+2*gridSize);
+		
+		/*
       g.drawLine( xanchor+11, yanchor+10, xanchor+18, yanchor+10 );
       g.drawLine( xanchor+14, yanchor+6, xanchor+14, yanchor+13 );
       g.drawLine( xanchor+11, yanchor+20, xanchor+18, yanchor+20 );
+      */
 	}
 }
