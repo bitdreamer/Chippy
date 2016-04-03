@@ -31,22 +31,22 @@ public class Board extends Piece implements Serializable
 	{
 	   clusterCount = 52;
       xanchor = x; yanchor = y; name = "board";
-      height = 300;
-      width = 135;
+      height = 30 * gridSize;
+      width = (int)(13  * gridSize );
 	 
 	  	//create an array of holes 	 
      	//clusterArray = new Cluster[clusterCount];
       clusters = new LinkedList();
 
-      clusters.add( new Cluster( this, 10, 10, 12 ) );
-      clusters.add( new Cluster( this, 10, 20, 12 ) );
+      clusters.add( new Cluster( this, gridSize, gridSize, 12 ) );
+      clusters.add( new Cluster( this, gridSize, 2*gridSize, 12 ) );
 
       //create clusters for the main area
-      int yy = 40;
-	  	for( int n = 2; n < clusterCount; n+=2, yy+=10 )
+      int yy = 4*gridSize;
+	  	for( int n = 2; n < clusterCount; n+=2, yy+=gridSize )
 		{
-         clusters.add( new Cluster(this,10,yy,5) );
-         clusters.add( new Cluster(this,80,yy,5) );
+         clusters.add( new Cluster(this,  gridSize,yy,5) );
+         clusters.add( new Cluster(this,8*gridSize,yy,5) );
 	  	} 	
 
       troll(); // position cluster relative to board (and thence the holes)

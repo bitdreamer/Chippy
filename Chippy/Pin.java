@@ -15,6 +15,7 @@ public class Pin extends Connectic
   	protected Color c;			// the color of this pin
   	protected String name;
   	protected int index; // index of pin in a chip, works for some?
+  	
 
    // constructor.  takes piece this is attached to and relative coords
    public Pin( Piece p, int xr, int yr )
@@ -127,9 +128,11 @@ public class Pin extends Connectic
    //
    public void draw(Graphics g)
 	{
+	   int gzover2 = CKTPanel.gz / 2;
+	
 		g.setColor(Color.black);
       // if ( idrive ) { g.setColor(Color.blue ); }
-		g.fillOval(xab,yab, height, width );
+		g.fillOval(xab-gzover2,yab-gzover2, gzover2, gzover2 );
 		
 		// debugging 
 		if ( theChippy.bug )

@@ -15,7 +15,7 @@ public class CKTPanel extends JPanel implements MouseListener, MouseMotionListen
 {
    boolean bug = true; // turn on for debugging
    Chippy theChippy; // pointer to the main program
-   int gz=10;  // grid size
+   static int gz=20;  // grid size (this is the one you set by hand)
    LinkedList <Piece> cktList;  // all the parts
    private Piece selectedPiece = null;// piece in focus, null=none
 

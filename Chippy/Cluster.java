@@ -2,6 +2,7 @@
 // Samah Kattan , also Emily and Barry
 
 // Cluster is a group of holes that are electrically connected.
+// It turns out there are all horizontal.
 
 package Chippy;
 
@@ -18,6 +19,7 @@ public class Cluster extends Piece implements Serializable
 
 	private int numHoles;
 	private int voltage = 3;
+	
 
    // constructor setting relative coordinates and number of holes
 	public Cluster( Board b, int x, int y, int n )
@@ -31,11 +33,12 @@ public class Cluster extends Piece implements Serializable
 		holes = new Hole[numHoles];
 
 		int inc = 0;
+		int gridSize = CKTPanel.gz;
 		for(int i = 0; i<numHoles;i++) 
 		{
 			holes[i] = new Hole(this,inc,0);
          connectix.add(holes[i]);
-		 	inc +=10;
+		 	inc += gridSize;
 	   }
  	}
 

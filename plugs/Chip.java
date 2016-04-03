@@ -72,10 +72,10 @@ public abstract class Chip extends RectangularPiece implements Serializable
    public Chip( int np1 )
    {
       //System.out.println("Chip.Chip: entering");
-      xanchor = 160;
-      yanchor = 250;
-      height = 65;
-      width = 20;
+      xanchor = gridify(160);
+      yanchor = gridify(250);
+      height =  gridSize * np1 / 2; // 65;
+      width = 2 * gridSize; // 20
 
       numPins = np1;
       pinArray = new Pin[numPins+1]; // Pin[0] is not used
@@ -85,11 +85,11 @@ public abstract class Chip extends RectangularPiece implements Serializable
       for ( int j=1; j<=numPins/2; j++ )
       {
           int k = numPins-j+1;
-          pinArray[j] = new Pin(this,-10,y, j); // Pin( xanchor-10, y, j, this );
+          pinArray[j] = new Pin(this,-gridSize,y, j); 
           connectix.add(pinArray[j]);
-          pinArray[k] = new Pin(this,20,y, numPins+1-j); // Pin( xanchor+20, y, k, this );
+          pinArray[k] = new Pin(this,2*gridSize,y, numPins+1-j); 
           connectix.add(pinArray[k]);
-          y += 10;
+          y += gridSize;
       }
       
       // usual default
@@ -160,12 +160,16 @@ public abstract class Chip extends RectangularPiece implements Serializable
       // draw the gray box part
       if (isSelected) {g.setColor(Color.lightGray.darker());}
 		else            {g.setColor(Color.lightGray         );}
-		g.fillRect(xanchor-2,yanchor,width,height);
+		g.fillRect((int)(xanchor-0.7*gridSize),(int)(yanchor-0.7*gridSize),width,height);
+		
+      // drag dot
+      g.setColor( Color.white );
+      g.fillRect(xanchor-1, yanchor-1, 2, 2 );
 		
 		//label the chip (write chip74 string down the chip)
 		g.setColor(Color.black);
-      int tx = xanchor+3;
-      int ty = yanchor + 15;
+      int tx = xanchor;
+      int ty = yanchor + gridSize;
       for ( int i=0; i<chip74.length(); i++ )
       {
           g.drawString(""+chip74.charAt(i), tx, ty );

@@ -19,7 +19,7 @@ public class Chip74377 extends Chip implements Serializable
    public Chip74377()
    {
       super(20); // 74377s have 20 pins.
-      height = 95;
+      // height = 95;
        chip74 = "74377";
        theFFs = new FF[8];
        theFFs[0] = new FF( pinArray[3], pinArray[2] );
@@ -52,10 +52,10 @@ public class Chip74377 extends Chip implements Serializable
       {
          //int v = pinArray[11].getDrivenV();
          Pin pk = pinArray[clockpin];
-         if (pk.needs) // will be set if value driving clock has changed
+         if (pk.getNeeds()) // will be set if value driving clock has changed
          {
-            Hole drv = (Hole)(pk.buddy);
-            if ( drv.voltage>=3 && drv.lastVolt<3 ) // detects pos edge trigger
+            Hole drv = (Hole)(pk.getBuddy());
+            if ( drv.getVoltage()>=3 && drv.getLastVolt()<3 ) // detects pos edge trigger
             {
                for ( int j=0; j<8; j++ )
                {

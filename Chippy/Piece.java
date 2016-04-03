@@ -19,7 +19,7 @@ public abstract class Piece implements Serializable
     protected int width;   //width of piece in pixels
     protected LinkedList <Connectic> connectix; // list of pins or holes that go with this piece.
     protected boolean isSelected = false;   //does this piece have focus?
-    static int gridSize; // piece should scale with gridSize
+    protected static int gridSize; // piece should scale with gridSize
 
     public Piece()
     {
@@ -78,7 +78,7 @@ public abstract class Piece implements Serializable
        
        if (bug) { System.out.println("Piece.grab: xanchor="+xanchor+" yanchor="+yanchor); }
        
-		int tolerance = 5;
+		int tolerance = gridSize/2;
 	   if (    (x >= xanchor - tolerance)
            && (x <= xanchor + tolerance)
            && (y >= yanchor - tolerance)
@@ -121,7 +121,7 @@ public abstract class Piece implements Serializable
          c.idrive=false;
       }
    }
-   
+   /*
    // return true iff coords are within the tolerance of the anchor
    public boolean contains(int x, int y)
    {
@@ -134,7 +134,7 @@ public abstract class Piece implements Serializable
       else
       {return false;}
    }
-   
+   */
    // do what needs to be done if these coords are near press point for this piece
    // return value says if there was change
    public boolean press( int x1, int y1 ) { return false; }

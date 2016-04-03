@@ -24,7 +24,7 @@ public class Chip74175 extends Chip implements Serializable
    public Chip74175()
    {
       super(16); // 74175s have 16 pins.
-      height = 75;
+     // height = 75;
        chip74 = "74175";
        theFFs = new FF[4];
        theFFs[0] = new FF( pinArray[4],  pinArray[2], pinArray[3] );
