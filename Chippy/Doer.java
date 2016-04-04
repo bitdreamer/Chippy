@@ -44,7 +44,9 @@ public class Doer
 
    public Piece doBattery( StringTokenizer st )
    {
-      Piece p = new Battery();
+      int x = Integer.parseInt( st.nextToken() );
+      int y = Integer.parseInt( st.nextToken() );
+      Piece p = new Battery(x,y);
       theChippy.getCktList().add( p );
       return p;
    }

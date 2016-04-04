@@ -48,7 +48,7 @@ public class Wire extends Piece implements Serializable
       endpoint1 = new Pin(this,0,0); // Pin(x, y, "endpoint1", this);
       //pins.add(endpoint1);
       connectix.add(endpoint1);
-      endpoint2 = new Pin(this,gridify(x2-x1),gridify(y2-y1)); // Pin(x, y+50, "endpoint2", this);
+      endpoint2 = new Pin(this,x2-x1,y2-y1); // Pin(x, y+50, "endpoint2", this);
       //pins.add(endpoint2);
       connectix.add(endpoint2);
       

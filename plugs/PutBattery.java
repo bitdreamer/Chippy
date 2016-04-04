@@ -17,6 +17,6 @@ public class PutBattery extends Put
    @Override
    public void actionPerformed( ActionEvent e )
    {
-      theChippy.addToCktList( new Battery() ); // has repaint in it
+      theChippy.addToCktList( new Battery( 140, 100) ); // has repaint in it
    }	
 }

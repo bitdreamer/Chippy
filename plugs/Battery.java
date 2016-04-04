@@ -21,9 +21,11 @@ public class Battery extends RectangularPiece implements Serializable
 	public boolean charge()
 	{ return false; }
   
-   public Battery() 
+
+   public Battery( int x, int y ) 
    {
-      xanchor = gridify(78); yanchor = gridify(120);
+      xanchor = gridify(x); // gridify(78); 
+      yanchor = gridify(y); // gridify(120);
       width = 3*gridSize; height = 3*gridSize;
 		   
 	  groundHole = new Hole(this,gridSize,2*gridSize);
@@ -44,7 +46,7 @@ public class Battery extends RectangularPiece implements Serializable
 	//returns 
 	public String saveMe()
 	{
-	   return "battery\n";
+	   return "battery "+xanchor+" "+yanchor+"\n";
 	}
 
    // Return Hole if this piece has one near given xy
@@ -59,7 +61,6 @@ public class Battery extends RectangularPiece implements Serializable
 
    // fix - battery is currently nailed down.  Make it a moveable piece.
    // To do so we should make the marking all relative to corner.
-   // Also, make holes in line vertically ... works better with boards.
 	@Override
 	public void draw( Graphics g )
    {
@@ -70,20 +71,12 @@ public class Battery extends RectangularPiece implements Serializable
       g.drawRect(xanchor,yanchor,width,height);
 		groundHole.draw(g);
 		posHole.draw(g);
-		
-	  
-	 		  
+  
 		// draws plus and minus
 		g.setColor(Color.red);
 		g.drawString("+", xanchor+2*gridSize, yanchor+gridSize);
 		
 		g.setColor( Color.black );
 		g.drawString("-", xanchor+2*gridSize, yanchor+2*gridSize);
-		
-		/*
-      g.drawLine( xanchor+11, yanchor+10, xanchor+18, yanchor+10 );
-      g.drawLine( xanchor+14, yanchor+6, xanchor+14, yanchor+13 );
-      g.drawLine( xanchor+11, yanchor+20, xanchor+18, yanchor+20 );
-      */
 	}
 }
