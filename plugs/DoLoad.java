@@ -1,5 +1,26 @@
 // DoLoad.java
 
+/*
+OK, so.  The load has errors.  Batteries, boards, wires ... many are
+out of place.  Battery a lot, the rest just a little.  My guess is 
+that some sort of the input-from-string contructors don't have the
+'bigger' fix that I just did.  So stuff gets rounded to the old grid
+and is off by one (which is what I saw, except the battery, which
+has no parameters, duh, needs fixing).  The makeWhatever() functions
+seem to be key ... in at least some cases, when we press the button,
+we specify it as a string and then use the string-parser to do it.
+Well, you will have to check them type by type.  Not that many.
+
+In other news ... once the chips get on the board, there's a whole
+problem of possibly putting two wires in one hole?  And the problem
+with that is, even after the user puts it right, I'm not sure the
+software ever recovers.  We need a reset button, somehow.  
+In particular we need to check or re-do all of the dropIn 
+things, make sure everyone has the right buddies.  This will 
+take some care.
+
+*/
+
 package plugs;
 
 import java.awt.*;
