@@ -2,7 +2,7 @@
 // Barrett Koster 2005
 // This is a quad flip flop chip.
 // This has 4 positive-edge triggered flip flops with Q and Qbar outputs.
-// The Clear singnal has to be high for it to work. (Low resets all Qs low 
+// The Clear signal has to be high for it to work. (Low resets all Qs low 
 // independent of inputs or clock.) 
 
 package plugs;
@@ -15,7 +15,7 @@ import Chippy.Pin;
 
 public class Chip74175 extends Chip implements Serializable
 {
-   boolean bug = true;
+   boolean bug = false;
    boolean clock; // true if the clock was up on last charge
    FF[] theFFs;
    int clockPin = 9;

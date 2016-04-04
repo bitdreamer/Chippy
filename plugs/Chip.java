@@ -29,6 +29,7 @@ public abstract class Chip extends RectangularPiece implements Serializable
        "7411",
        "7427",
        "7432",  
+       "7486",  
        "74175",
        "74377" 
       };
@@ -48,6 +49,7 @@ public abstract class Chip extends RectangularPiece implements Serializable
          else if ( key.equals("7411"  ) ) { c = new Chip7411(); }
          else if ( key.equals("7427"  ) ) { c = new Chip7427(); }
          else if ( key.equals("7432"  ) ) { c = new Chip7432(); }
+         else if ( key.equals("7486"  ) ) { c = new Chip7486(); }
          else if ( key.equals("74175" ) ) { c = new Chip74175(); }
          else if ( key.equals("74377" ) ) { c = new Chip74377(); }
           

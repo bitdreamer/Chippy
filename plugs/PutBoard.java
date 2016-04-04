@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import Chippy.*;
+
 public class PutBoard extends Put
 {
    //int numBoards=0; 
@@ -25,7 +27,7 @@ public class PutBoard extends Put
       if ( theChippy.getNumBoards()<5 )
         {
             //Board b = new Board( 590-numBoards*140,180 );
-            theChippy.addToCktList( new plugs.Board( 20 + (theChippy.getNumBoards())*140,180 ) );
+            theChippy.addToCktList( new plugs.Board( 20 + (theChippy.getNumBoards())*14*CKTPanel.gz,180 ) );
             theChippy.incNumBoards();
         }
    }	
