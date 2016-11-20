@@ -142,6 +142,9 @@ public class Board extends Piece implements Serializable
 	   int y1 = super.getY();
 	   int x2 = x1 + width;
 	   int y2 = y1 + height;
+	   
+	   g.setColor( Color.white );
+	   g.fillRect( x1, y1, width, height );
 	  
 	   g.setColor(Color.black);
       g.drawRect(  Math.min( x1, x2),
